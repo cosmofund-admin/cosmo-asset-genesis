@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, CreditCard, DollarSign, Calendar, Percent } from 'lucide-react';
+import { ArrowLeft, CreditCard, DollarSign, Calendar, Percent, Coins } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface Asset {
