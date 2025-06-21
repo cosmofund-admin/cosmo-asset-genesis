@@ -1,8 +1,11 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Shield, Coins } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="home" className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Орбитальная анимация на фоне */}
@@ -41,11 +44,11 @@ const Hero = () => {
 
           {/* Кнопки действий */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 fade-in-up" style={{animationDelay: "0.6s"}}>
-            <Button size="lg" className="futuristic-btn text-lg px-8 py-6">
+            <Button size="lg" className="futuristic-btn text-lg px-8 py-6" onClick={() => navigate('/auth')}>
               Начать токенизацию
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button variant="outline" size="lg" className="futuristic-btn text-lg px-8 py-6">
+            <Button variant="outline" size="lg" className="futuristic-btn text-lg px-8 py-6" onClick={() => navigate('/marketplace')}>
               Изучить маркетплейс
             </Button>
           </div>

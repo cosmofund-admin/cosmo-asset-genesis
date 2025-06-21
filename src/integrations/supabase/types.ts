@@ -9,6 +9,72 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      assets: {
+        Row: {
+          abt_price: number | null
+          abt_supply: number | null
+          abt_token_id: string
+          agt_price: number | null
+          agt_supply: number | null
+          agt_token_id: string
+          asset_type: string
+          ast_price: number | null
+          ast_supply: number | null
+          ast_token_id: string
+          created_at: string | null
+          description: string | null
+          id: string
+          image_url: string | null
+          location: string
+          name: string
+          owner_id: string
+          updated_at: string | null
+          value_usd: number
+        }
+        Insert: {
+          abt_price?: number | null
+          abt_supply?: number | null
+          abt_token_id: string
+          agt_price?: number | null
+          agt_supply?: number | null
+          agt_token_id: string
+          asset_type: string
+          ast_price?: number | null
+          ast_supply?: number | null
+          ast_token_id: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          location: string
+          name: string
+          owner_id: string
+          updated_at?: string | null
+          value_usd: number
+        }
+        Update: {
+          abt_price?: number | null
+          abt_supply?: number | null
+          abt_token_id?: string
+          agt_price?: number | null
+          agt_supply?: number | null
+          agt_token_id?: string
+          asset_type?: string
+          ast_price?: number | null
+          ast_supply?: number | null
+          ast_token_id?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          location?: string
+          name?: string
+          owner_id?: string
+          updated_at?: string | null
+          value_usd?: number
+        }
+        Relationships: []
+      }
       "Cosmo RWA": {
         Row: {
           created_at: string
@@ -23,6 +89,256 @@ export type Database = {
           id?: number
         }
         Relationships: []
+      }
+      liquidity_pools: {
+        Row: {
+          asset_id: string
+          cosmo_amount: number
+          created_at: string | null
+          id: string
+          token_amount: number
+          token_type: string
+          total_liquidity: number
+          updated_at: string | null
+        }
+        Insert: {
+          asset_id: string
+          cosmo_amount?: number
+          created_at?: string | null
+          id?: string
+          token_amount?: number
+          token_type: string
+          total_liquidity?: number
+          updated_at?: string | null
+        }
+        Update: {
+          asset_id?: string
+          cosmo_amount?: number
+          created_at?: string | null
+          id?: string
+          token_amount?: number
+          token_type?: string
+          total_liquidity?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "liquidity_pools_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      loans: {
+        Row: {
+          asset_id: string
+          borrower_id: string
+          collateral_amount: number
+          collateral_token_type: string
+          created_at: string | null
+          due_date: string
+          id: string
+          interest_rate: number
+          lender_id: string | null
+          loan_amount_cosmo: number
+          loan_duration_days: number
+          repaid_at: string | null
+          status: string | null
+        }
+        Insert: {
+          asset_id: string
+          borrower_id: string
+          collateral_amount: number
+          collateral_token_type: string
+          created_at?: string | null
+          due_date: string
+          id?: string
+          interest_rate: number
+          lender_id?: string | null
+          loan_amount_cosmo: number
+          loan_duration_days: number
+          repaid_at?: string | null
+          status?: string | null
+        }
+        Update: {
+          asset_id?: string
+          borrower_id?: string
+          collateral_amount?: number
+          collateral_token_type?: string
+          created_at?: string | null
+          due_date?: string
+          id?: string
+          interest_rate?: number
+          lender_id?: string | null
+          loan_amount_cosmo?: number
+          loan_duration_days?: number
+          repaid_at?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "loans_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          bnb_balance: number | null
+          cosmo_balance: number | null
+          created_at: string | null
+          id: string
+          updated_at: string | null
+          wallet_address: string | null
+        }
+        Insert: {
+          bnb_balance?: number | null
+          cosmo_balance?: number | null
+          created_at?: string | null
+          id: string
+          updated_at?: string | null
+          wallet_address?: string | null
+        }
+        Update: {
+          bnb_balance?: number | null
+          cosmo_balance?: number | null
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
+          wallet_address?: string | null
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount_bnb: number | null
+          amount_cosmo: number | null
+          asset_id: string | null
+          created_at: string | null
+          id: string
+          status: string | null
+          token_amount: number | null
+          token_type: string | null
+          transaction_type: string
+          user_id: string
+        }
+        Insert: {
+          amount_bnb?: number | null
+          amount_cosmo?: number | null
+          asset_id?: string | null
+          created_at?: string | null
+          id?: string
+          status?: string | null
+          token_amount?: number | null
+          token_type?: string | null
+          transaction_type: string
+          user_id: string
+        }
+        Update: {
+          amount_bnb?: number | null
+          amount_cosmo?: number | null
+          asset_id?: string | null
+          created_at?: string | null
+          id?: string
+          status?: string | null
+          token_amount?: number | null
+          token_type?: string | null
+          transaction_type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_liquidity: {
+        Row: {
+          cosmo_contributed: number
+          created_at: string | null
+          id: string
+          liquidity_amount: number
+          pool_id: string
+          token_contributed: number
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          cosmo_contributed?: number
+          created_at?: string | null
+          id?: string
+          liquidity_amount?: number
+          pool_id: string
+          token_contributed?: number
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          cosmo_contributed?: number
+          created_at?: string | null
+          id?: string
+          liquidity_amount?: number
+          pool_id?: string
+          token_contributed?: number
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_liquidity_pool_id_fkey"
+            columns: ["pool_id"]
+            isOneToOne: false
+            referencedRelation: "liquidity_pools"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_tokens: {
+        Row: {
+          amount: number
+          asset_id: string
+          created_at: string | null
+          id: string
+          token_type: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          amount?: number
+          asset_id: string
+          created_at?: string | null
+          id?: string
+          token_type: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          asset_id?: string
+          created_at?: string | null
+          id?: string
+          token_type?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_tokens_asset_id_fkey"
+            columns: ["asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

@@ -2,13 +2,15 @@
 import { useState } from "react";
 import { Menu, X, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navigation = [
     { name: "Главная", href: "#home" },
-    { name: "Маркетплейс", href: "#marketplace" },
+    { name: "Маркетплейс", action: () => navigate('/marketplace') },
     { name: "Как начать", href: "#guide" },
     { name: "О проекте", href: "#about" },
   ];
@@ -18,7 +20,7 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Логотип */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/')}>
             <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 neon-glow"></div>
             <span className="text-xl font-bold gradient-text">Cosmo RWA</span>
           </div>
@@ -26,21 +28,21 @@ const Header = () => {
           {/* Навигация для десктопа */}
           <nav className="hidden md:flex space-x-8">
             {navigation.map((item) => (
-              <a
+              <button
                 key={item.name}
-                href={item.href}
+                onClick={item.action || (() => {})}
                 className="text-muted-foreground hover:text-foreground transition-colors duration-200 hover:neon-text"
               >
                 {item.name}
-              </a>
+              </button>
             ))}
           </nav>
 
           {/* Кнопка подключения кошелька */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button className="futuristic-btn">
+            <Button className="futuristic-btn" onClick={() => navigate('/auth')}>
               <Wallet className="w-4 h-4 mr-2" />
-              Подключить кошелек
+              Войти
             </Button>
           </div>
 
@@ -61,18 +63,20 @@ const Header = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-border">
               {navigation.map((item) => (
-                <a
+                <button
                   key={item.name}
-                  href={item.href}
-                  className="block px-3 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => {
+                    if (item.action) item.action();
+                    setIsMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-3 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   {item.name}
-                </a>
+                </button>
               ))}
-              <Button className="w-full futuristic-btn mt-4">
+              <Button className="w-full futuristic-btn mt-4" onClick={() => navigate('/auth')}>
                 <Wallet className="w-4 h-4 mr-2" />
-                Подключить кошелек
+                Войти
               </Button>
             </div>
           </div>
