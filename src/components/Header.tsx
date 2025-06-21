@@ -3,17 +3,34 @@ import { useState } from "react";
 import { Menu, X, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useMetaMask } from "@/hooks/useMetaMask";
+import { useLanguage } from "@/hooks/useLanguage";
+import LanguageSelector from "./LanguageSelector";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { account, isConnected, isConnecting, connectWallet, disconnectWallet } = useMetaMask();
+  const { t } = useLanguage();
 
   const navigation = [
-    { name: "Главная", href: "#home" },
-    { name: "Маркетплейс", action: () => navigate('/marketplace') },
-    { name: "Как начать", href: "#guide" },
-    { name: "О проекте", href: "#about" },
+    { name: t('home'), href: "#home" },
+    { name: t('marketplace'), action: () => navigate('/marketplace') },
+    { name: t('howToStart'), href: "#guide" },
+    { name: t('about'), href: "#about" },
   ];
+
+  const handleWalletAction = () => {
+    if (isConnected) {
+      navigate('/dashboard');
+    } else {
+      connectWallet();
+    }
+  };
+
+  const formatAddress = (address: string) => {
+    return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+  };
 
   return (
     <header className="fixed top-0 w-full z-50 backdrop-blur-md bg-background/80 border-b border-border">
@@ -38,11 +55,33 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Кнопка подключения кошелька */}
+          {/* Селектор языка и кнопка кошелька */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button className="futuristic-btn" onClick={() => navigate('/auth')}>
+            <LanguageSelector />
+            
+            {isConnected && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={disconnectWallet}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                {t('disconnect')}
+              </Button>
+            )}
+            
+            <Button 
+              className="futuristic-btn" 
+              onClick={handleWalletAction}
+              disabled={isConnecting}
+            >
               <Wallet className="w-4 h-4 mr-2" />
-              Войти
+              {isConnecting 
+                ? t('connectingWallet')
+                : isConnected 
+                  ? formatAddress(account!)
+                  : t('connectMetaMask')
+              }
             </Button>
           </div>
 
@@ -74,10 +113,40 @@ const Header = () => {
                   {item.name}
                 </button>
               ))}
-              <Button className="w-full futuristic-btn mt-4" onClick={() => navigate('/auth')}>
-                <Wallet className="w-4 h-4 mr-2" />
-                Войти
-              </Button>
+              
+              <div className="flex flex-col space-y-2 pt-4">
+                <LanguageSelector />
+                
+                {isConnected && (
+                  <Button
+                    variant="ghost"
+                    onClick={() => {
+                      disconnectWallet();
+                      setIsMenuOpen(false);
+                    }}
+                    className="w-full text-muted-foreground hover:text-foreground"
+                  >
+                    {t('disconnect')}
+                  </Button>
+                )}
+                
+                <Button 
+                  className="w-full futuristic-btn" 
+                  onClick={() => {
+                    handleWalletAction();
+                    setIsMenuOpen(false);
+                  }}
+                  disabled={isConnecting}
+                >
+                  <Wallet className="w-4 h-4 mr-2" />
+                  {isConnecting 
+                    ? t('connectingWallet')
+                    : isConnected 
+                      ? formatAddress(account!)
+                      : t('connectMetaMask')
+                  }
+                </Button>
+              </div>
             </div>
           </div>
         )}
