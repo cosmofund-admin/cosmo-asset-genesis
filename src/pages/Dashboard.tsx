@@ -11,10 +11,11 @@ import CosmoSwap from '@/components/CosmoSwap';
 
 interface Profile {
   id: string;
-  username: string;
-  full_name: string;
-  avatar_url: string;
+  wallet_address: string;
   cosmo_balance: number;
+  bnb_balance: number;
+  created_at: string;
+  updated_at: string;
 }
 
 interface Asset {
@@ -39,8 +40,12 @@ interface Transaction {
   asset_id: string;
   user_id: string;
   transaction_type: string;
-  amount: number;
-  timestamp: string;
+  amount_cosmo: number;
+  amount_bnb: number;
+  token_amount: number;
+  token_type: string;
+  created_at: string;
+  status: string;
 }
 
 const Dashboard = () => {
@@ -109,7 +114,7 @@ const Dashboard = () => {
       .from('transactions')
       .select('*')
       .eq('user_id', account)
-      .order('timestamp', { ascending: false });
+      .order('created_at', { ascending: false });
     
     if (!error && data) {
       setTransactions(data);
@@ -294,7 +299,7 @@ const Dashboard = () => {
                       Тип
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                      Сумма
+                      Сумма COSMO
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
                       Актив
@@ -311,13 +316,13 @@ const Dashboard = () => {
                         <div className="text-sm">{transaction.transaction_type}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm">{transaction.amount}</div>
+                        <div className="text-sm">{transaction.amount_cosmo || 0}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm">Asset ID: {transaction.asset_id}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm">{new Date(transaction.timestamp).toLocaleString()}</div>
+                        <div className="text-sm">{new Date(transaction.created_at).toLocaleString()}</div>
                       </td>
                     </tr>
                   ))}
