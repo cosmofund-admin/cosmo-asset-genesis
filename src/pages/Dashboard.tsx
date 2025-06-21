@@ -1,126 +1,21 @@
-import { useEffect, useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Plus, Coins, TrendingUp, CreditCard, Wallet } from 'lucide-react';
+import { ArrowLeft, Plus, Wallet } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useMetaMask } from '@/hooks/useMetaMask';
 import { useLanguage } from '@/hooks/useLanguage';
+import { useDashboardData } from '@/hooks/useDashboardData';
+import BalanceCard from '@/components/BalanceCard';
+import PortfolioStats from '@/components/PortfolioStats';
+import QuickActions from '@/components/QuickActions';
+import TransactionHistory from '@/components/TransactionHistory';
 import CosmoSwap from '@/components/CosmoSwap';
-
-interface Profile {
-  id: string;
-  wallet_address: string;
-  cosmo_balance: number;
-  bnb_balance: number;
-  created_at: string;
-  updated_at: string;
-}
-
-interface Asset {
-  id: string;
-  name: string;
-  description: string;
-  asset_type: string;
-  value_usd: number;
-  location: string;
-}
-
-interface UserToken {
-  id: string;
-  asset_id: string;
-  user_id: string;
-  token_type: string;
-  amount: number;
-}
-
-interface Transaction {
-  id: string;
-  asset_id: string;
-  user_id: string;
-  transaction_type: string;
-  amount_cosmo: number;
-  amount_bnb: number;
-  token_amount: number;
-  token_type: string;
-  created_at: string;
-  status: string;
-}
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { account, isConnected, balance } = useMetaMask();
   const { t } = useLanguage();
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [assets, setAssets] = useState<Asset[]>([]);
-  const [userTokens, setUserTokens] = useState<UserToken[]>([]);
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (account) {
-      fetchProfile();
-      fetchAssets();
-      fetchUserTokens();
-      fetchTransactions();
-    } else {
-      setLoading(false);
-    }
-  }, [account]);
-
-  const fetchProfile = async () => {
-    try {
-      const { data: profileData, error: profileError } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('wallet_address', account)
-        .single();
-
-      if (profileError) {
-        console.error('Error fetching profile:', profileError);
-      }
-
-      setProfile(profileData);
-    } catch (error) {
-      console.error('Unexpected error fetching profile:', error);
-    }
-  };
-
-  const fetchAssets = async () => {
-    const { data, error } = await supabase
-      .from('assets')
-      .select('*')
-      .order('created_at', { ascending: false });
-    
-    if (!error && data) {
-      setAssets(data);
-    }
-  };
-
-  const fetchUserTokens = async () => {
-    const { data, error } = await supabase
-      .from('user_tokens')
-      .select('*')
-      .eq('user_id', account);
-    
-    if (!error && data) {
-      setUserTokens(data);
-    }
-  };
-
-  const fetchTransactions = async () => {
-    const { data, error } = await supabase
-      .from('transactions')
-      .select('*')
-      .eq('user_id', account)
-      .order('created_at', { ascending: false });
-    
-    if (!error && data) {
-      setTransactions(data);
-    }
-    setLoading(false);
-  };
+  const { profile, assets, userTokens, transactions, loading } = useDashboardData(account);
 
   if (!isConnected) {
     return (
@@ -174,73 +69,11 @@ const Dashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Карточка баланса */}
-          <Card className="asset-card">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Coins className="h-5 w-5 text-green-400" />
-                <span>{t('balance')}</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <div className="text-sm text-muted-foreground">{t('cosmoBalance')}</div>
-                <div className="text-2xl font-bold text-green-400">
-                  {profile?.cosmo_balance || 0} COSMO
-                </div>
-              </div>
-              <div>
-                <div className="text-sm text-muted-foreground">{t('bnbBalance')}</div>
-                <div className="text-xl font-semibold">
-                  {balance} BNB
-                </div>
-              </div>
-              <div className="pt-2 border-t border-border">
-                <div className="text-sm text-muted-foreground">{t('totalValue')}</div>
-                <div className="text-lg font-semibold text-blue-400">
-                  ${((profile?.cosmo_balance || 0) * 0.1 + parseFloat(balance) * 300).toFixed(2)}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Компонент покупки COSMO */}
+          <BalanceCard profile={profile} balance={balance} />
           <CosmoSwap />
-
-          {/* Статистика портфеля */}
-          <Card className="asset-card">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <TrendingUp className="h-5 w-5 text-blue-400" />
-                <span>Портфель</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <div className="text-sm text-muted-foreground">{t('myAssets')}</div>
-                  <div className="text-xl font-semibold">{assets.length}</div>
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground">Токены</div>
-                  <div className="text-xl font-semibold">{userTokens.length}</div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <div className="text-sm text-muted-foreground">{t('transactions')}</div>
-                  <div className="text-xl font-semibold">{transactions.length}</div>
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground">Общий доход</div>
-                  <div className="text-xl font-semibold text-green-400">+$0.00</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <PortfolioStats assets={assets} userTokens={userTokens} transactions={transactions} />
         </div>
 
-        {/* Навигационные карточки */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold gradient-text mb-4">Управление активами</h2>
           <p className="text-muted-foreground">
@@ -248,89 +81,9 @@ const Dashboard = () => {
           </p>
         </div>
         
-        {/* Быстрые действия */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <Card className="asset-card cursor-pointer hover:border-blue-500/50 transition-colors" onClick={() => navigate('/marketplace')}>
-            <CardContent className="p-6 text-center">
-              <Coins className="h-8 w-8 mx-auto mb-2 text-blue-400" />
-              <h3 className="font-semibold">{t('marketplace')}</h3>
-              <p className="text-sm text-muted-foreground">Торговля активами</p>
-            </CardContent>
-          </Card>
+        <QuickActions />
 
-          <Card className="asset-card cursor-pointer hover:border-purple-500/50 transition-colors" onClick={() => navigate('/create-asset')}>
-            <CardContent className="p-6 text-center">
-              <Plus className="h-8 w-8 mx-auto mb-2 text-purple-400" />
-              <h3 className="font-semibold">{t('createAsset')}</h3>
-              <p className="text-sm text-muted-foreground">Токенизировать актив</p>
-            </CardContent>
-          </Card>
-
-          <Card className="asset-card cursor-pointer hover:border-green-500/50 transition-colors" onClick={() => navigate('/loans')}>
-            <CardContent className="p-6 text-center">
-              <CreditCard className="h-8 w-8 mx-auto mb-2 text-green-400" />
-              <h3 className="font-semibold">{t('loans')}</h3>
-              <p className="text-sm text-muted-foreground">Кредитование</p>
-            </CardContent>
-          </Card>
-
-          <Card className="asset-card cursor-pointer hover:border-yellow-500/50 transition-colors">
-            <CardContent className="p-6 text-center">
-              <TrendingUp className="h-8 w-8 mx-auto mb-2 text-yellow-400" />
-              <h3 className="font-semibold">{t('liquidity')}</h3>
-              <p className="text-sm text-muted-foreground">Управление ликвидностью</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Таблица последних транзакций */}
-        <div>
-          <h2 className="text-2xl font-bold gradient-text mb-4">{t('transactionHistory')}</h2>
-          {transactions.length === 0 ? (
-            <div className="text-center py-8">
-              <p className="text-muted-foreground">Нет транзакций для отображения</p>
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-border rounded-md shadow-sm">
-                <thead className="bg-secondary">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                      Тип
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                      Сумма COSMO
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                      Актив
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                      Дата
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-background divide-y divide-border">
-                  {transactions.map((transaction) => (
-                    <tr key={transaction.id}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm">{transaction.transaction_type}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm">{transaction.amount_cosmo || 0}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm">Asset ID: {transaction.asset_id}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm">{new Date(transaction.created_at).toLocaleString()}</div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
+        <TransactionHistory transactions={transactions} />
       </div>
     </div>
   );
