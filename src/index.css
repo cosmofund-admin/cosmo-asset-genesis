@@ -227,20 +227,81 @@
   background: linear-gradient(180deg, #0ea5e9, #9333ea);
 }
 
-/* Скрыть все возможные варианты Lovable badge */
+/* ПОЛНОЕ СКРЫТИЕ ВСЕХ ВАРИАНТОВ LOVABLE BADGE */
+/* Скрыть по data-атрибутам */
 [data-lovable-badge],
 [data-lovable-badge] *,
+[data-lovable="true"],
+[data-lovable="badge"],
+[data-testid*="lovable"],
+[data-cy*="lovable"],
+/* Скрыть по классам */
 .lovable-badge,
 .lovable-edit-button,
+.lovable-button,
+.lovable-widget,
+.lovable-overlay,
+.edit-with-lovable,
+.lovable-floating-button,
+/* Скрыть по ID */
+#lovable-badge,
+#lovable-button,
+#edit-with-lovable,
+#lovable-widget,
+#lovable-floating-button,
+/* Скрыть по содержимому текста */
 div[class*="lovable"],
 div[id*="lovable"],
+span[class*="lovable"],
+span[id*="lovable"],
+button[class*="lovable"],
+button[id*="lovable"],
+a[class*="lovable"],
+a[id*="lovable"],
+/* Скрыть по href или src */
 iframe[src*="lovable"],
+a[href*="lovable"],
+/* Скрыть по содержимому */
 *[class*="edit-with-lovable"],
-*[id*="edit-with-lovable"] {
+*[id*="edit-with-lovable"],
+/* Дополнительные варианты */
+.fixed.bottom-4.right-4,
+.fixed.bottom-6.right-6,
+.fixed[style*="bottom"],
+div[style*="position: fixed"][style*="bottom"],
+button[style*="position: fixed"][style*="bottom"],
+/* Скрыть по тексту внутри */
+*:contains("Edit with Lovable"),
+*:contains("edit with lovable"),
+*:contains("EDIT WITH LOVABLE") {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   position: absolute !important;
   left: -9999px !important;
-  z-index: -1 !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  z-index: -9999 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+/* Дополнительные правила для iframe и внешних виджетов */
+iframe[src*="lovable"],
+iframe[title*="lovable"],
+iframe[name*="lovable"] {
+  display: none !important;
+}
+
+/* Скрыть все в правом нижнем углу что может быть кнопкой */
+.fixed.bottom-0.right-0,
+.fixed.bottom-1.right-1,
+.fixed.bottom-2.right-2,
+.fixed.bottom-3.right-3,
+.fixed.bottom-4.right-4,
+.fixed.bottom-5.right-5,
+.fixed.bottom-6.right-6 {
+  display: none !important;
 }

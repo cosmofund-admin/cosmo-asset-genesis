@@ -36,7 +36,7 @@ const QuickActions = () => {
       description: t('exchangeTokens'),
       icon: <Coins className="h-6 w-6" />,
       color: 'text-orange-400',
-      action: () => {}
+      action: () => navigate('/marketplace') // Временно ведем на маркетплейс
     }
   ];
 
@@ -57,7 +57,7 @@ const QuickActions = () => {
             </CardHeader>
             <CardContent className="pt-0">
               <Button variant="ghost" size="sm" className="w-full text-xs">
-                {t('startTokenization')}
+                {action.title === t('createAsset') ? t('startTokenization') : t('open')}
               </Button>
             </CardContent>
           </Card>

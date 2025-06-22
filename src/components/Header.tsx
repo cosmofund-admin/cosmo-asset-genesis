@@ -14,9 +14,21 @@ const Header = () => {
   const { t } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+    // Если мы не на главной странице, сначала переходим на неё
+    if (window.location.pathname !== '/') {
+      navigate('/');
+      // Даём время для загрузки страницы
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

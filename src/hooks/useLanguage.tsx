@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useState, useEffect } from 'react';
 
 interface LanguageContextType {
@@ -23,6 +24,7 @@ const translations = {
     'save': 'Сохранить',
     'edit': 'Редактировать',
     'delete': 'Удалить',
+    'open': 'Открыть',
     
     // Навигация
     'home': 'Главная',
@@ -99,6 +101,7 @@ const translations = {
     
     // Как начать
     'howToStartTitle': 'Как начать работу с Cosmo RWA',
+    'howToStartDescription': 'Следуйте этим простым шагам, чтобы начать токенизацию ваших активов',
     'step1Title': 'Подключите MetaMask',
     'step1Description': 'Установите и настройте кошелек MetaMask для работы с BNB Smart Chain',
     'step2Title': 'Купите токены COSMO',
@@ -133,6 +136,7 @@ const translations = {
     'save': 'Save',
     'edit': 'Edit',
     'delete': 'Delete',
+    'open': 'Open',
     
     // Navigation
     'home': 'Home',
@@ -209,6 +213,7 @@ const translations = {
     
     // How to start
     'howToStartTitle': 'How to Get Started with Cosmo RWA',
+    'howToStartDescription': 'Follow these simple steps to start tokenizing your assets',
     'step1Title': 'Connect MetaMask',
     'step1Description': 'Install and configure MetaMask wallet for BNB Smart Chain',
     'step2Title': 'Buy COSMO Tokens',
@@ -235,6 +240,7 @@ const translations = {
     'loading': 'Cargando...',
     'error': 'Error',
     'success': 'Éxito',
+    'open': 'Abrir',
     'home': 'Inicio',
     'marketplace': 'Mercado',
     'dashboard': 'Panel',
@@ -253,7 +259,10 @@ const translations = {
     'tradeAssetTokens': 'Comerciar tokens',
     'loansWithTokenCollateral': 'Préstamos con garantía',
     'defiSwap': 'DeFi Intercambio',
-    'exchangeTokens': 'Intercambiar tokens'
+    'exchangeTokens': 'Intercambiar tokens',
+    'loans': 'Préstamos',
+    'disconnect': 'Desconectar',
+    'connectingWallet': 'Conectando cartera...'
   },
   
   fr: {
@@ -261,6 +270,7 @@ const translations = {
     'loading': 'Chargement...',
     'error': 'Erreur',
     'success': 'Succès',
+    'open': 'Ouvrir',
     'home': 'Accueil',
     'marketplace': 'Marché',
     'dashboard': 'Tableau de bord',
@@ -279,7 +289,10 @@ const translations = {
     'tradeAssetTokens': 'Échanger des jetons',
     'loansWithTokenCollateral': 'Prêts avec garantie',
     'defiSwap': 'DeFi Échange',
-    'exchangeTokens': 'Échanger des jetons'
+    'exchangeTokens': 'Échanger des jetons',
+    'loans': 'Prêts',
+    'disconnect': 'Déconnecter',
+    'connectingWallet': 'Connexion portefeuille...'
   },
   
   de: {
@@ -287,6 +300,7 @@ const translations = {
     'loading': 'Laden...',
     'error': 'Fehler',
     'success': 'Erfolg',
+    'open': 'Öffnen',
     'home': 'Startseite',
     'marketplace': 'Marktplatz',
     'dashboard': 'Dashboard',
@@ -305,7 +319,10 @@ const translations = {
     'tradeAssetTokens': 'Token handeln',
     'loansWithTokenCollateral': 'Kredite mit Sicherheit',
     'defiSwap': 'DeFi Tausch',
-    'exchangeTokens': 'Token tauschen'
+    'exchangeTokens': 'Token tauschen',
+    'loans': 'Kredite',
+    'disconnect': 'Trennen',
+    'connectingWallet': 'Wallet verbinden...'
   },
   
   zh: {
@@ -313,6 +330,7 @@ const translations = {
     'loading': '加载中...',
     'error': '错误',
     'success': '成功',
+    'open': '打开',
     'home': '首页',
     'marketplace': '市场',
     'dashboard': '仪表板',
@@ -331,7 +349,10 @@ const translations = {
     'tradeAssetTokens': '交易代币',
     'loansWithTokenCollateral': '抵押贷款',
     'defiSwap': 'DeFi交换',
-    'exchangeTokens': '交换代币'
+    'exchangeTokens': '交换代币',
+    'loans': '贷款',
+    'disconnect': '断开',
+    'connectingWallet': '连接钱包...'
   },
   
   ja: {
@@ -339,6 +360,7 @@ const translations = {
     'loading': '読み込み中...',
     'error': 'エラー',
     'success': '成功',
+    'open': '開く',
     'home': 'ホーム',
     'marketplace': 'マーケット',
     'dashboard': 'ダッシュボード',
@@ -357,7 +379,10 @@ const translations = {
     'tradeAssetTokens': 'トークンを取引',
     'loansWithTokenCollateral': '担保付きローン',
     'defiSwap': 'DeFiスワップ',
-    'exchangeTokens': 'トークン交換'
+    'exchangeTokens': 'トークン交換',
+    'loans': 'ローン',
+    'disconnect': '切断',
+    'connectingWallet': 'ウォレット接続中...'
   },
   
   ar: {
@@ -365,6 +390,7 @@ const translations = {
     'loading': 'جاري التحميل...',
     'error': 'خطأ',
     'success': 'نجح',
+    'open': 'فتح',
     'home': 'الرئيسية',
     'marketplace': 'السوق',
     'dashboard': 'لوحة القيادة',
@@ -383,7 +409,10 @@ const translations = {
     'tradeAssetTokens': 'تداول الرموز',
     'loansWithTokenCollateral': 'قروض بضمانة',
     'defiSwap': 'DeFi تبادل',
-    'exchangeTokens': 'تبادل الرموز'
+    'exchangeTokens': 'تبادل الرموز',
+    'loans': 'قروض',
+    'disconnect': 'قطع الاتصال',
+    'connectingWallet': 'ربط المحفظة...'
   },
   
   pt: {
@@ -391,6 +420,7 @@ const translations = {
     'loading': 'Carregando...',
     'error': 'Erro',
     'success': 'Sucesso',
+    'open': 'Abrir',
     'home': 'Início',
     'marketplace': 'Mercado',
     'dashboard': 'Painel',
@@ -409,7 +439,10 @@ const translations = {
     'tradeAssetTokens': 'Negociar tokens',
     'loansWithTokenCollateral': 'Empréstimos garantidos',
     'defiSwap': 'DeFi Troca',
-    'exchangeTokens': 'Trocar tokens'
+    'exchangeTokens': 'Trocar tokens',
+    'loans': 'Empréstimos',
+    'disconnect': 'Desconectar',
+    'connectingWallet': 'Conectando carteira...'
   },
   
   hi: {
@@ -417,6 +450,7 @@ const translations = {
     'loading': 'लोड हो रहा है...',
     'error': 'त्रुटि',
     'success': 'सफलता',
+    'open': 'खोलें',
     'home': 'होम',
     'marketplace': 'बाज़ार',
     'dashboard': 'डैशबोर्ड',
@@ -435,7 +469,10 @@ const translations = {
     'tradeAssetTokens': 'टोकन ट्रेड करें',
     'loansWithTokenCollateral': 'टोकन जमानत पर ऋण',
     'defiSwap': 'DeFi स्वैप',
-    'exchangeTokens': 'टोकन एक्सचेंज'
+    'exchangeTokens': 'टोकन एक्सचेंज',
+    'loans': 'ऋण',
+    'disconnect': 'डिस्कनेक्ट',
+    'connectingWallet': 'वॉलेट कनेक्ट हो रहा है...'
   }
 };
 
