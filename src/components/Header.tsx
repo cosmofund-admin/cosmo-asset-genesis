@@ -13,11 +13,18 @@ const Header = () => {
   const { account, isConnected, isConnecting, connectWallet, disconnectWallet } = useMetaMask();
   const { t } = useLanguage();
 
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const navigation = [
-    { name: t('home'), href: "#home" },
+    { name: t('home'), action: () => scrollToSection('home') },
     { name: t('marketplace'), action: () => navigate('/marketplace') },
-    { name: t('howToStart'), href: "#guide" },
-    { name: t('about'), href: "#about" },
+    { name: t('howToStart'), action: () => scrollToSection('how-to-start') },
+    { name: t('about'), action: () => scrollToSection('about') },
   ];
 
   const handleWalletAction = () => {
@@ -47,7 +54,7 @@ const Header = () => {
             {navigation.map((item) => (
               <button
                 key={item.name}
-                onClick={item.action || (() => {})}
+                onClick={item.action}
                 className="text-muted-foreground hover:text-foreground transition-colors duration-200 hover:neon-text"
               >
                 {item.name}
@@ -105,7 +112,7 @@ const Header = () => {
                 <button
                   key={item.name}
                   onClick={() => {
-                    if (item.action) item.action();
+                    item.action();
                     setIsMenuOpen(false);
                   }}
                   className="block w-full text-left px-3 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"

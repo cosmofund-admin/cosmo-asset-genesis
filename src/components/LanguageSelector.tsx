@@ -8,6 +8,14 @@ import { useLanguage } from '@/hooks/useLanguage';
 const languages = [
   { code: 'ru', name: 'Русский', flag: '🇷🇺' },
   { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'zh', name: '中文', flag: '🇨🇳' },
+  { code: 'ja', name: '日本語', flag: '🇯🇵' },
+  { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+  { code: 'pt', name: 'Português', flag: '🇧🇷' },
+  { code: 'hi', name: 'हिन्दी', flag: '🇮🇳' },
 ];
 
 const LanguageSelector = () => {
@@ -30,7 +38,7 @@ const LanguageSelector = () => {
           <span className="hidden sm:inline">{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="max-h-60 overflow-y-auto">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}

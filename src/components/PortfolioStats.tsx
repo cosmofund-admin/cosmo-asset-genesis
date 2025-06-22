@@ -18,7 +18,7 @@ const PortfolioStats = ({ assets, userTokens, transactions }: PortfolioStatsProp
       <CardHeader>
         <CardTitle className="flex items-center space-x-2">
           <TrendingUp className="h-5 w-5 text-blue-400" />
-          <span>Портфель</span>
+          <span>{t('dashboard')}</span>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">

@@ -1,6 +1,7 @@
 
-import { Card, CardContent } from '@/components/ui/card';
-import { Coins, Plus, CreditCard, TrendingUp } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Plus, TrendingUp, DollarSign, Coins } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 
@@ -8,39 +9,60 @@ const QuickActions = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
 
+  const actions = [
+    {
+      title: t('createAsset'),
+      description: 'Токенизируйте свой актив',
+      icon: <Plus className="h-6 w-6" />,
+      color: 'text-blue-400',
+      action: () => navigate('/create-asset')
+    },
+    {
+      title: t('marketplace'),
+      description: 'Торгуйте токенами активов',
+      icon: <TrendingUp className="h-6 w-6" />,
+      color: 'text-green-400',
+      action: () => navigate('/marketplace')
+    },
+    {
+      title: t('loans'),
+      description: 'Займы под залог токенов',
+      icon: <DollarSign className="h-6 w-6" />,
+      color: 'text-purple-400',
+      action: () => navigate('/loans')
+    },
+    {
+      title: 'DeFi Swap',
+      description: 'Обменивайте токены',
+      icon: <Coins className="h-6 w-6" />,
+      color: 'text-orange-400',
+      action: () => {}
+    }
+  ];
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-      <Card className="asset-card cursor-pointer hover:border-blue-500/50 transition-colors" onClick={() => navigate('/marketplace')}>
-        <CardContent className="p-6 text-center">
-          <Coins className="h-8 w-8 mx-auto mb-2 text-blue-400" />
-          <h3 className="font-semibold">{t('marketplace')}</h3>
-          <p className="text-sm text-muted-foreground">Торговля активами</p>
-        </CardContent>
-      </Card>
-
-      <Card className="asset-card cursor-pointer hover:border-purple-500/50 transition-colors" onClick={() => navigate('/create-asset')}>
-        <CardContent className="p-6 text-center">
-          <Plus className="h-8 w-8 mx-auto mb-2 text-purple-400" />
-          <h3 className="font-semibold">{t('createAsset')}</h3>
-          <p className="text-sm text-muted-foreground">Токенизировать актив</p>
-        </CardContent>
-      </Card>
-
-      <Card className="asset-card cursor-pointer hover:border-green-500/50 transition-colors" onClick={() => navigate('/loans')}>
-        <CardContent className="p-6 text-center">
-          <CreditCard className="h-8 w-8 mx-auto mb-2 text-green-400" />
-          <h3 className="font-semibold">{t('loans')}</h3>
-          <p className="text-sm text-muted-foreground">Кредитование</p>
-        </CardContent>
-      </Card>
-
-      <Card className="asset-card cursor-pointer hover:border-yellow-500/50 transition-colors">
-        <CardContent className="p-6 text-center">
-          <TrendingUp className="h-8 w-8 mx-auto mb-2 text-yellow-400" />
-          <h3 className="font-semibold">{t('liquidity')}</h3>
-          <p className="text-sm text-muted-foreground">Управление ликвидностью</p>
-        </CardContent>
-      </Card>
+    <div className="mb-8">
+      <h2 className="text-2xl font-bold gradient-text mb-6">Быстрые действия</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {actions.map((action, index) => (
+          <Card key={index} className="asset-card cursor-pointer hover:scale-105 transition-transform" onClick={action.action}>
+            <CardHeader className="pb-3">
+              <div className={`${action.color} mb-2`}>
+                {action.icon}
+              </div>
+              <CardTitle className="text-lg">{action.title}</CardTitle>
+              <CardDescription className="text-sm">
+                {action.description}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <Button variant="ghost" size="sm" className="w-full text-xs">
+                {t('startTokenization')}
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };

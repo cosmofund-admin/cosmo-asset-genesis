@@ -9,7 +9,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Словари переводов
+// Словари переводов для 10 языков
 const translations = {
   ru: {
     // Общие
@@ -71,6 +71,7 @@ const translations = {
     'art': 'Искусство',
     'collectibles': 'Коллекционные предметы',
     'other': 'Другое',
+    'startTokenization': 'Начать токенизацию',
     
     // Транзакции
     'transactions': 'Транзакции',
@@ -87,7 +88,29 @@ const translations = {
     'loanAmount': 'Сумма кредита',
     'interestRate': 'Процентная ставка',
     'duration': 'Срок',
-    'collateralAmount': 'Сумма залога'
+    'collateralAmount': 'Сумма залога',
+    
+    // Как начать
+    'howToStartTitle': 'Как начать работу с Cosmo RWA',
+    'step1Title': 'Подключите MetaMask',
+    'step1Description': 'Установите и настройте кошелек MetaMask для работы с BNB Smart Chain',
+    'step2Title': 'Купите токены COSMO',
+    'step2Description': 'Приобретите токены COSMO на PancakeSwap для использования в платформе',
+    'step3Title': 'Создайте актив',
+    'step3Description': 'Токенизируйте свой актив и получите три уникальных токена',
+    'step4Title': 'Торгуйте на маркетплейсе',
+    'step4Description': 'Покупайте и продавайте токены активов на нашем маркетплейсе',
+    
+    // О проекте
+    'aboutTitle': 'О проекте Cosmo RWA',
+    'aboutDescription': 'Cosmo RWA - это инновационная децентрализованная платформа для токенизации реальных активов на блокчейне BNB Smart Chain.',
+    'missionTitle': 'Наша миссия',
+    'missionDescription': 'Мы делаем инвестиции в реальные активы доступными для всех через технологию блокчейна.',
+    'featuresTitle': 'Особенности платформы',
+    'feature1': 'Автоматическое создание трех типов токенов для каждого актива',
+    'feature2': 'Децентрализованная торговля и обмен токенами',
+    'feature3': 'Кредитование под залог токенизированных активов',
+    'feature4': 'Прозрачность и безопасность блокчейна'
   },
   
   en: {
@@ -150,6 +173,7 @@ const translations = {
     'art': 'Art',
     'collectibles': 'Collectibles',
     'other': 'Other',
+    'startTokenization': 'Start Tokenization',
     
     // Transactions
     'transactions': 'Transactions',
@@ -166,7 +190,157 @@ const translations = {
     'loanAmount': 'Loan Amount',
     'interestRate': 'Interest Rate',
     'duration': 'Duration',
-    'collateralAmount': 'Collateral Amount'
+    'collateralAmount': 'Collateral Amount',
+    
+    // How to start
+    'howToStartTitle': 'How to Get Started with Cosmo RWA',
+    'step1Title': 'Connect MetaMask',
+    'step1Description': 'Install and configure MetaMask wallet for BNB Smart Chain',
+    'step2Title': 'Buy COSMO Tokens',
+    'step2Description': 'Purchase COSMO tokens on PancakeSwap to use in the platform',
+    'step3Title': 'Create Asset',
+    'step3Description': 'Tokenize your asset and receive three unique tokens',
+    'step4Title': 'Trade on Marketplace',
+    'step4Description': 'Buy and sell asset tokens on our marketplace',
+    
+    // About
+    'aboutTitle': 'About Cosmo RWA Project',
+    'aboutDescription': 'Cosmo RWA is an innovative decentralized platform for tokenizing real-world assets on the BNB Smart Chain.',
+    'missionTitle': 'Our Mission',
+    'missionDescription': 'We make real asset investments accessible to everyone through blockchain technology.',
+    'featuresTitle': 'Platform Features',
+    'feature1': 'Automatic creation of three token types for each asset',
+    'feature2': 'Decentralized trading and token exchange',
+    'feature3': 'Lending with tokenized asset collateral',
+    'feature4': 'Blockchain transparency and security'
+  },
+  
+  es: {
+    'welcome': 'Bienvenido',
+    'loading': 'Cargando...',
+    'error': 'Error',
+    'success': 'Éxito',
+    'home': 'Inicio',
+    'marketplace': 'Mercado',
+    'dashboard': 'Panel',
+    'howToStart': 'Cómo Empezar',
+    'about': 'Acerca de',
+    'connectMetaMask': 'Conectar MetaMask',
+    'balance': 'Balance',
+    'createAsset': 'Crear Activo',
+    'startTokenization': 'Iniciar Tokenización'
+  },
+  
+  fr: {
+    'welcome': 'Bienvenue',
+    'loading': 'Chargement...',
+    'error': 'Erreur',
+    'success': 'Succès',
+    'home': 'Accueil',
+    'marketplace': 'Marché',
+    'dashboard': 'Tableau de bord',
+    'howToStart': 'Comment Commencer',
+    'about': 'À propos',
+    'connectMetaMask': 'Connecter MetaMask',
+    'balance': 'Solde',
+    'createAsset': 'Créer un Actif',
+    'startTokenization': 'Commencer la Tokenisation'
+  },
+  
+  de: {
+    'welcome': 'Willkommen',
+    'loading': 'Laden...',
+    'error': 'Fehler',
+    'success': 'Erfolg',
+    'home': 'Startseite',
+    'marketplace': 'Marktplatz',
+    'dashboard': 'Dashboard',
+    'howToStart': 'Wie Anfangen',
+    'about': 'Über uns',
+    'connectMetaMask': 'MetaMask Verbinden',
+    'balance': 'Guthaben',
+    'createAsset': 'Asset Erstellen',
+    'startTokenization': 'Tokenisierung Starten'
+  },
+  
+  zh: {
+    'welcome': '欢迎',
+    'loading': '加载中...',
+    'error': '错误',
+    'success': '成功',
+    'home': '首页',
+    'marketplace': '市场',
+    'dashboard': '仪表板',
+    'howToStart': '如何开始',
+    'about': '关于我们',
+    'connectMetaMask': '连接MetaMask',
+    'balance': '余额',
+    'createAsset': '创建资产',
+    'startTokenization': '开始代币化'
+  },
+  
+  ja: {
+    'welcome': 'ようこそ',
+    'loading': '読み込み中...',
+    'error': 'エラー',
+    'success': '成功',
+    'home': 'ホーム',
+    'marketplace': 'マーケット',
+    'dashboard': 'ダッシュボード',
+    'howToStart': '始め方',
+    'about': '私たちについて',
+    'connectMetaMask': 'MetaMaskに接続',
+    'balance': '残高',
+    'createAsset': 'アセット作成',
+    'startTokenization': 'トークン化開始'
+  },
+  
+  ar: {
+    'welcome': 'مرحبا',
+    'loading': 'جاري التحميل...',
+    'error': 'خطأ',
+    'success': 'نجح',
+    'home': 'الرئيسية',
+    'marketplace': 'السوق',
+    'dashboard': 'لوحة القيادة',
+    'howToStart': 'كيفية البدء',
+    'about': 'حولنا',
+    'connectMetaMask': 'ربط MetaMask',
+    'balance': 'الرصيد',
+    'createAsset': 'إنشاء أصل',
+    'startTokenization': 'بدء الترميز'
+  },
+  
+  pt: {
+    'welcome': 'Bem-vindo',
+    'loading': 'Carregando...',
+    'error': 'Erro',
+    'success': 'Sucesso',
+    'home': 'Início',
+    'marketplace': 'Mercado',
+    'dashboard': 'Painel',
+    'howToStart': 'Como Começar',
+    'about': 'Sobre',
+    'connectMetaMask': 'Conectar MetaMask',
+    'balance': 'Saldo',
+    'createAsset': 'Criar Ativo',
+    'startTokenization': 'Iniciar Tokenização'
+  },
+  
+  hi: {
+    'welcome': 'स्वागत',
+    'loading': 'लोड हो रहा है...',
+    'error': 'त्रुटि',
+    'success': 'सफलता',
+    'home': 'होम',
+    'marketplace': 'बाज़ार',
+    'dashboard': 'डैशबोर्ड',
+    'howToStart': 'शुरुआत कैसे करें',
+    'about': 'हमारे बारे में',
+    'connectMetaMask': 'MetaMask कनेक्ट करें',
+    'balance': 'शेष राशि',
+    'createAsset': 'एसेट बनाएं',
+    'startTokenization': 'टोकनाइज़ेशन शुरू करें'
   }
 };
 
