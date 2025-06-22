@@ -1,170 +1,194 @@
 
 import { useState } from "react";
-import { Menu, X, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useMetaMask } from "@/hooks/useMetaMask";
-import { useLanguage } from "@/hooks/useLanguage";
 import LanguageSelector from "./LanguageSelector";
+import { useLanguage } from '@/hooks/useLanguage';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { account, isConnected, isConnecting, connectWallet, disconnectWallet } = useMetaMask();
+  const location = useLocation();
+  const { isConnected, connectWallet, disconnect, account } = useMetaMask();
   const { t } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
-    // Если мы не на главной странице, сначала переходим на неё
-    if (window.location.pathname !== '/') {
+    if (location.pathname !== '/') {
       navigate('/');
-      // Даём время для загрузки страницы
       setTimeout(() => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' });
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
         }
       }, 100);
     } else {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
       }
     }
+    setIsMenuOpen(false);
   };
 
-  const navigation = [
-    { name: t('home'), action: () => scrollToSection('home') },
-    { name: t('marketplace'), action: () => navigate('/marketplace') },
-    { name: t('howToStart'), action: () => scrollToSection('how-to-start') },
-    { name: t('about'), action: () => scrollToSection('about') },
-  ];
-
-  const handleWalletAction = () => {
-    if (isConnected) {
-      navigate('/dashboard');
-    } else {
-      connectWallet();
-    }
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    setIsMenuOpen(false);
   };
 
   const formatAddress = (address: string) => {
-    return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 backdrop-blur-md bg-background/80 border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex items-center justify-between h-16">
           {/* Логотип */}
-          <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 neon-glow"></div>
-            <span className="text-xl font-bold gradient-text">Cosmo RWA</span>
+          <div className="flex items-center">
+            <button 
+              onClick={() => handleNavigation('/')}
+              className="text-2xl font-bold gradient-text hover:scale-105 transition-transform"
+            >
+              Cosmo RWA
+            </button>
           </div>
 
-          {/* Навигация для десктопа */}
-          <nav className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
-              <button
-                key={item.name}
-                onClick={item.action}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 hover:neon-text"
-              >
-                {item.name}
-              </button>
-            ))}
+          {/* Десктопное меню */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <button 
+              onClick={() => scrollToSection('home')} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {t('home')}
+            </button>
+            <button 
+              onClick={() => scrollToSection('how-to-start')} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {t('howToStart')}
+            </button>
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {t('about')}
+            </button>
+            <button 
+              onClick={() => handleNavigation('/marketplace')} 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {t('marketplace')}
+            </button>
           </nav>
 
-          {/* Селектор языка и кнопка кошелька */}
+          {/* Правая часть */}
           <div className="hidden md:flex items-center space-x-4">
             <LanguageSelector />
             
-            {isConnected && (
-              <Button
-                variant="ghost"
+            {isConnected ? (
+              <div className="flex items-center space-x-2">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => handleNavigation('/dashboard')}
+                  className="futuristic-btn"
+                >
+                  {account ? formatAddress(account) : t('dashboard')}
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  onClick={disconnect}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  {t('disconnect')}
+                </Button>
+              </div>
+            ) : (
+              <Button 
+                onClick={connectWallet} 
+                className="futuristic-btn"
                 size="sm"
-                onClick={disconnectWallet}
-                className="text-muted-foreground hover:text-foreground"
               >
-                {t('disconnect')}
+                {t('connectWallet')}
               </Button>
             )}
-            
-            <Button 
-              className="futuristic-btn" 
-              onClick={handleWalletAction}
-              disabled={isConnecting}
-            >
-              <Wallet className="w-4 h-4 mr-2" />
-              {isConnecting 
-                ? t('connectingWallet')
-                : isConnected 
-                  ? formatAddress(account!)
-                  : t('connectMetaMask')
-              }
-            </Button>
           </div>
 
-          {/* Мобильное меню */}
-          <div className="md:hidden">
+          {/* Мобильное меню кнопка */}
+          <div className="md:hidden flex items-center space-x-2">
+            <LanguageSelector />
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-muted-foreground hover:text-foreground"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
 
-        {/* Мобильная навигация */}
+        {/* Мобильное меню */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-border">
-              {navigation.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => {
-                    item.action();
-                    setIsMenuOpen(false);
-                  }}
-                  className="block w-full text-left px-3 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
-                >
-                  {item.name}
-                </button>
-              ))}
+          <div className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-md">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <button 
+                onClick={() => scrollToSection('home')}
+                className="block w-full text-left px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {t('home')}
+              </button>
+              <button 
+                onClick={() => scrollToSection('how-to-start')}
+                className="block w-full text-left px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {t('howToStart')}
+              </button>
+              <button 
+                onClick={() => scrollToSection('about')}
+                className="block w-full text-left px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {t('about')}
+              </button>
+              <button 
+                onClick={() => handleNavigation('/marketplace')}
+                className="block w-full text-left px-3 py-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {t('marketplace')}
+              </button>
               
-              <div className="flex flex-col space-y-2 pt-4">
-                <LanguageSelector />
-                
-                {isConnected && (
-                  <Button
-                    variant="ghost"
-                    onClick={() => {
-                      disconnectWallet();
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full text-muted-foreground hover:text-foreground"
+              <div className="border-t border-border/50 pt-2 mt-2">
+                {isConnected ? (
+                  <div className="space-y-2">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => handleNavigation('/dashboard')}
+                      className="w-full futuristic-btn"
+                    >
+                      {account ? formatAddress(account) : t('dashboard')}
+                    </Button>
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      onClick={disconnect}
+                      className="w-full text-muted-foreground hover:text-foreground"
+                    >
+                      {t('disconnect')}
+                    </Button>
+                  </div>
+                ) : (
+                  <Button 
+                    onClick={connectWallet} 
+                    className="w-full futuristic-btn"
+                    size="sm"
                   >
-                    {t('disconnect')}
+                    {t('connectWallet')}
                   </Button>
                 )}
-                
-                <Button 
-                  className="w-full futuristic-btn" 
-                  onClick={() => {
-                    handleWalletAction();
-                    setIsMenuOpen(false);
-                  }}
-                  disabled={isConnecting}
-                >
-                  <Wallet className="w-4 h-4 mr-2" />
-                  {isConnecting 
-                    ? t('connectingWallet')
-                    : isConnected 
-                      ? formatAddress(account!)
-                      : t('connectMetaMask')
-                  }
-                </Button>
               </div>
             </div>
           </div>

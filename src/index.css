@@ -227,81 +227,56 @@
   background: linear-gradient(180deg, #0ea5e9, #9333ea);
 }
 
-/* ПОЛНОЕ СКРЫТИЕ ВСЕХ ВАРИАНТОВ LOVABLE BADGE */
-/* Скрыть по data-атрибутам */
-[data-lovable-badge],
-[data-lovable-badge] *,
-[data-lovable="true"],
-[data-lovable="badge"],
-[data-testid*="lovable"],
-[data-cy*="lovable"],
-/* Скрыть по классам */
-.lovable-badge,
-.lovable-edit-button,
-.lovable-button,
-.lovable-widget,
-.lovable-overlay,
-.edit-with-lovable,
-.lovable-floating-button,
-/* Скрыть по ID */
-#lovable-badge,
-#lovable-button,
-#edit-with-lovable,
-#lovable-widget,
-#lovable-floating-button,
-/* Скрыть по содержимому текста */
-div[class*="lovable"],
-div[id*="lovable"],
-span[class*="lovable"],
-span[id*="lovable"],
-button[class*="lovable"],
-button[id*="lovable"],
-a[class*="lovable"],
-a[id*="lovable"],
-/* Скрыть по href или src */
-iframe[src*="lovable"],
-a[href*="lovable"],
-/* Скрыть по содержимому */
-*[class*="edit-with-lovable"],
-*[id*="edit-with-lovable"],
-/* Дополнительные варианты */
-.fixed.bottom-4.right-4,
-.fixed.bottom-6.right-6,
-.fixed[style*="bottom"],
-div[style*="position: fixed"][style*="bottom"],
-button[style*="position: fixed"][style*="bottom"],
-/* Скрыть по тексту внутри */
+/* ПОЛНОЕ СКРЫТИЕ ВСЕХ ВАРИАНТОВ LOVABLE BADGE И КНОПОК */
+/* Скрыть все возможные варианты Lovable элементов */
+*[class*="lovable" i],
+*[id*="lovable" i],
+*[data-testid*="lovable" i],
+*[aria-label*="lovable" i],
+*[title*="lovable" i],
 *:contains("Edit with Lovable"),
 *:contains("edit with lovable"),
-*:contains("EDIT WITH LOVABLE") {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-  width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  z-index: -9999 !important;
-  pointer-events: none !important;
-  user-select: none !important;
-}
-
-/* Дополнительные правила для iframe и внешних виджетов */
-iframe[src*="lovable"],
-iframe[title*="lovable"],
-iframe[name*="lovable"] {
-  display: none !important;
-}
-
-/* Скрыть все в правом нижнем углу что может быть кнопкой */
+*:contains("EDIT WITH LOVABLE"),
+*:contains("lovable"),
+*:contains("LOVABLE"),
+/* Скрыть все фиксированные элементы в правом нижнем углу */
 .fixed.bottom-0.right-0,
 .fixed.bottom-1.right-1,
 .fixed.bottom-2.right-2,
 .fixed.bottom-3.right-3,
 .fixed.bottom-4.right-4,
 .fixed.bottom-5.right-5,
-.fixed.bottom-6.right-6 {
+.fixed.bottom-6.right-6,
+.fixed.bottom-8.right-8,
+/* Скрыть все кнопки редактирования */
+button[class*="edit" i],
+button[class*="floating" i],
+a[href*="lovable" i],
+iframe[src*="lovable" i],
+/* Дополнительные селекторы */
+[data-lovable],
+[data-lovable="true"],
+[data-lovable-badge],
+.lovable-badge,
+.lovable-edit-button,
+#lovable-badge,
+#edit-with-lovable {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -99999px !important;
+  top: -99999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  z-index: -99999 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  transform: translateX(-100vw) !important;
+}
+
+/* Скрыть все iframe которые могут содержать Lovable */
+iframe:not([src*="youtube"]):not([src*="vimeo"]):not([src*="maps"]) {
   display: none !important;
 }
