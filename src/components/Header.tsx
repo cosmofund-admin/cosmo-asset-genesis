@@ -11,7 +11,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { isConnected, connectWallet, disconnect, account } = useMetaMask();
+  const { isConnected, connectWallet, disconnectWallet, account } = useMetaMask();
   const { t } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
@@ -100,7 +100,7 @@ const Header = () => {
                 <Button 
                   variant="ghost" 
                   size="sm"
-                  onClick={disconnect}
+                  onClick={disconnectWallet}
                   className="text-muted-foreground hover:text-foreground"
                 >
                   {t('disconnect')}
@@ -174,7 +174,7 @@ const Header = () => {
                     <Button 
                       variant="ghost" 
                       size="sm"
-                      onClick={disconnect}
+                      onClick={disconnectWallet}
                       className="w-full text-muted-foreground hover:text-foreground"
                     >
                       {t('disconnect')}
