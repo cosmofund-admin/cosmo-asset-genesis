@@ -12,28 +12,28 @@ const QuickActions = () => {
   const actions = [
     {
       title: t('createAsset'),
-      description: 'Токенизируйте свой актив',
+      description: t('tokenizeYourAsset'),
       icon: <Plus className="h-6 w-6" />,
       color: 'text-blue-400',
       action: () => navigate('/create-asset')
     },
     {
       title: t('marketplace'),
-      description: 'Торгуйте токенами активов',
+      description: t('tradeAssetTokens'),
       icon: <TrendingUp className="h-6 w-6" />,
       color: 'text-green-400',
       action: () => navigate('/marketplace')
     },
     {
       title: t('loans'),
-      description: 'Займы под залог токенов',
+      description: t('loansWithTokenCollateral'),
       icon: <DollarSign className="h-6 w-6" />,
       color: 'text-purple-400',
       action: () => navigate('/loans')
     },
     {
-      title: 'DeFi Swap',
-      description: 'Обменивайте токены',
+      title: t('defiSwap'),
+      description: t('exchangeTokens'),
       icon: <Coins className="h-6 w-6" />,
       color: 'text-orange-400',
       action: () => {}
@@ -42,7 +42,7 @@ const QuickActions = () => {
 
   return (
     <div className="mb-8">
-      <h2 className="text-2xl font-bold gradient-text mb-6">Быстрые действия</h2>
+      <h2 className="text-2xl font-bold gradient-text mb-6">{t('quickActions')}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {actions.map((action, index) => (
           <Card key={index} className="asset-card cursor-pointer hover:scale-105 transition-transform" onClick={action.action}>

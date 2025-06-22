@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -226,7 +227,20 @@
   background: linear-gradient(180deg, #0ea5e9, #9333ea);
 }
 
-/* Hide Lovable badge */
-[data-lovable-badge] {
+/* Скрыть все возможные варианты Lovable badge */
+[data-lovable-badge],
+[data-lovable-badge] *,
+.lovable-badge,
+.lovable-edit-button,
+div[class*="lovable"],
+div[id*="lovable"],
+iframe[src*="lovable"],
+*[class*="edit-with-lovable"],
+*[id*="edit-with-lovable"] {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  z-index: -1 !important;
 }

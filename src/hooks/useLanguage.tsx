@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useState, useEffect } from 'react';
 
 interface LanguageContextType {
@@ -51,12 +50,16 @@ const translations = {
     'buyOnPancakeSwap': 'Купить на PancakeSwap',
     'opening': 'Открывается...',
     'pancakeSwapWarning': 'Вы будете перенаправлены на PancakeSwap. Убедитесь, что используете правильный контракт токена.',
+    'tokens': 'Токены',
+    'defiSwap': 'DeFi Обмен',
+    'exchangeTokens': 'Обменивайте токены',
     
     // Баланс
     'balance': 'Баланс',
     'cosmoBalance': 'Баланс COSMO',
     'bnbBalance': 'Баланс BNB',
     'totalValue': 'Общая стоимость',
+    'totalRevenue': 'Общий доход',
     
     // Активы
     'createAsset': 'Создать актив',
@@ -72,6 +75,10 @@ const translations = {
     'collectibles': 'Коллекционные предметы',
     'other': 'Другое',
     'startTokenization': 'Начать токенизацию',
+    'tokenizeYourAsset': 'Токенизируйте свой актив',
+    'tradeAssetTokens': 'Торгуйте токенами активов',
+    'loansWithTokenCollateral': 'Займы под залог токенов',
+    'quickActions': 'Быстрые действия',
     
     // Транзакции
     'transactions': 'Транзакции',
@@ -153,12 +160,16 @@ const translations = {
     'buyOnPancakeSwap': 'Buy on PancakeSwap',
     'opening': 'Opening...',
     'pancakeSwapWarning': 'You will be redirected to PancakeSwap. Make sure to use the correct token contract.',
+    'tokens': 'Tokens',
+    'defiSwap': 'DeFi Swap',
+    'exchangeTokens': 'Exchange tokens',
     
     // Balance
     'balance': 'Balance',
     'cosmoBalance': 'COSMO Balance',
     'bnbBalance': 'BNB Balance',
     'totalValue': 'Total Value',
+    'totalRevenue': 'Total Revenue',
     
     // Assets
     'createAsset': 'Create Asset',
@@ -174,6 +185,10 @@ const translations = {
     'collectibles': 'Collectibles',
     'other': 'Other',
     'startTokenization': 'Start Tokenization',
+    'tokenizeYourAsset': 'Tokenize your asset',
+    'tradeAssetTokens': 'Trade asset tokens',
+    'loansWithTokenCollateral': 'Loans with token collateral',
+    'quickActions': 'Quick Actions',
     
     // Transactions
     'transactions': 'Transactions',
@@ -228,7 +243,17 @@ const translations = {
     'connectMetaMask': 'Conectar MetaMask',
     'balance': 'Balance',
     'createAsset': 'Crear Activo',
-    'startTokenization': 'Iniciar Tokenización'
+    'startTokenization': 'Iniciar Tokenización',
+    'tokens': 'Tokens',
+    'myAssets': 'Mis Activos',
+    'transactions': 'Transacciones',
+    'totalRevenue': 'Ingresos Totales',
+    'quickActions': 'Acciones Rápidas',
+    'tokenizeYourAsset': 'Tokenizar activo',
+    'tradeAssetTokens': 'Comerciar tokens',
+    'loansWithTokenCollateral': 'Préstamos con garantía',
+    'defiSwap': 'DeFi Intercambio',
+    'exchangeTokens': 'Intercambiar tokens'
   },
   
   fr: {
@@ -244,7 +269,17 @@ const translations = {
     'connectMetaMask': 'Connecter MetaMask',
     'balance': 'Solde',
     'createAsset': 'Créer un Actif',
-    'startTokenization': 'Commencer la Tokenisation'
+    'startTokenization': 'Commencer la Tokenisation',
+    'tokens': 'Jetons',
+    'myAssets': 'Mes Actifs',
+    'transactions': 'Transactions',
+    'totalRevenue': 'Revenus Totaux',
+    'quickActions': 'Actions Rapides',
+    'tokenizeYourAsset': 'Tokeniser votre actif',
+    'tradeAssetTokens': 'Échanger des jetons',
+    'loansWithTokenCollateral': 'Prêts avec garantie',
+    'defiSwap': 'DeFi Échange',
+    'exchangeTokens': 'Échanger des jetons'
   },
   
   de: {
@@ -260,7 +295,17 @@ const translations = {
     'connectMetaMask': 'MetaMask Verbinden',
     'balance': 'Guthaben',
     'createAsset': 'Asset Erstellen',
-    'startTokenization': 'Tokenisierung Starten'
+    'startTokenization': 'Tokenisierung Starten',
+    'tokens': 'Token',
+    'myAssets': 'Meine Assets',
+    'transactions': 'Transaktionen',
+    'totalRevenue': 'Gesamtumsatz',
+    'quickActions': 'Schnelle Aktionen',
+    'tokenizeYourAsset': 'Asset tokenisieren',
+    'tradeAssetTokens': 'Token handeln',
+    'loansWithTokenCollateral': 'Kredite mit Sicherheit',
+    'defiSwap': 'DeFi Tausch',
+    'exchangeTokens': 'Token tauschen'
   },
   
   zh: {
@@ -276,7 +321,17 @@ const translations = {
     'connectMetaMask': '连接MetaMask',
     'balance': '余额',
     'createAsset': '创建资产',
-    'startTokenization': '开始代币化'
+    'startTokenization': '开始代币化',
+    'tokens': '代币',
+    'myAssets': '我的资产',
+    'transactions': '交易',
+    'totalRevenue': '总收入',
+    'quickActions': '快捷操作',
+    'tokenizeYourAsset': '代币化资产',
+    'tradeAssetTokens': '交易代币',
+    'loansWithTokenCollateral': '抵押贷款',
+    'defiSwap': 'DeFi交换',
+    'exchangeTokens': '交换代币'
   },
   
   ja: {
@@ -292,7 +347,17 @@ const translations = {
     'connectMetaMask': 'MetaMaskに接続',
     'balance': '残高',
     'createAsset': 'アセット作成',
-    'startTokenization': 'トークン化開始'
+    'startTokenization': 'トークン化開始',
+    'tokens': 'トークン',
+    'myAssets': 'マイアセット',
+    'transactions': '取引',
+    'totalRevenue': '総収益',
+    'quickActions': 'クイックアクション',
+    'tokenizeYourAsset': 'アセットをトークン化',
+    'tradeAssetTokens': 'トークンを取引',
+    'loansWithTokenCollateral': '担保付きローン',
+    'defiSwap': 'DeFiスワップ',
+    'exchangeTokens': 'トークン交換'
   },
   
   ar: {
@@ -308,7 +373,17 @@ const translations = {
     'connectMetaMask': 'ربط MetaMask',
     'balance': 'الرصيد',
     'createAsset': 'إنشاء أصل',
-    'startTokenization': 'بدء الترميز'
+    'startTokenization': 'بدء الترميز',
+    'tokens': 'الرموز',
+    'myAssets': 'أصولي',
+    'transactions': 'المعاملات',
+    'totalRevenue': 'إجمالي الإيرادات',
+    'quickActions': 'إجراءات سريعة',
+    'tokenizeYourAsset': 'رمز أصلك',
+    'tradeAssetTokens': 'تداول الرموز',
+    'loansWithTokenCollateral': 'قروض بضمانة',
+    'defiSwap': 'DeFi تبادل',
+    'exchangeTokens': 'تبادل الرموز'
   },
   
   pt: {
@@ -324,7 +399,17 @@ const translations = {
     'connectMetaMask': 'Conectar MetaMask',
     'balance': 'Saldo',
     'createAsset': 'Criar Ativo',
-    'startTokenization': 'Iniciar Tokenização'
+    'startTokenization': 'Iniciar Tokenização',
+    'tokens': 'Tokens',
+    'myAssets': 'Meus Ativos',
+    'transactions': 'Transações',
+    'totalRevenue': 'Receita Total',
+    'quickActions': 'Ações Rápidas',
+    'tokenizeYourAsset': 'Tokenizar ativo',
+    'tradeAssetTokens': 'Negociar tokens',
+    'loansWithTokenCollateral': 'Empréstimos garantidos',
+    'defiSwap': 'DeFi Troca',
+    'exchangeTokens': 'Trocar tokens'
   },
   
   hi: {
@@ -340,7 +425,17 @@ const translations = {
     'connectMetaMask': 'MetaMask कनेक्ट करें',
     'balance': 'शेष राशि',
     'createAsset': 'एसेट बनाएं',
-    'startTokenization': 'टोकनाइज़ेशन शुरू करें'
+    'startTokenization': 'टोकनाइज़ेशन शुरू करें',
+    'tokens': 'टोकन',
+    'myAssets': 'मेरी संपत्ति',
+    'transactions': 'लेन-देन',
+    'totalRevenue': 'कुल राजस्व',
+    'quickActions': 'त्वरित कार्य',
+    'tokenizeYourAsset': 'संपत्ति टोकनाइज़ करें',
+    'tradeAssetTokens': 'टोकन ट्रेड करें',
+    'loansWithTokenCollateral': 'टोकन जमानत पर ऋण',
+    'defiSwap': 'DeFi स्वैप',
+    'exchangeTokens': 'टोकन एक्सचेंज'
   }
 };
 

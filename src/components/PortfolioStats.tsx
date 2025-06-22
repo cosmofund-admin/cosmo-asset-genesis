@@ -28,7 +28,7 @@ const PortfolioStats = ({ assets, userTokens, transactions }: PortfolioStatsProp
             <div className="text-xl font-semibold">{assets.length}</div>
           </div>
           <div>
-            <div className="text-sm text-muted-foreground">Токены</div>
+            <div className="text-sm text-muted-foreground">{t('tokens')}</div>
             <div className="text-xl font-semibold">{userTokens.length}</div>
           </div>
         </div>
@@ -38,7 +38,7 @@ const PortfolioStats = ({ assets, userTokens, transactions }: PortfolioStatsProp
             <div className="text-xl font-semibold">{transactions.length}</div>
           </div>
           <div>
-            <div className="text-sm text-muted-foreground">Общий доход</div>
+            <div className="text-sm text-muted-foreground">{t('totalRevenue')}</div>
             <div className="text-xl font-semibold text-green-400">+$0.00</div>
           </div>
         </div>
