@@ -227,19 +227,36 @@
   background: linear-gradient(180deg, #0ea5e9, #9333ea);
 }
 
-/* ПОЛНОЕ СКРЫТИЕ ВСЕХ ВАРИАНТОВ LOVABLE BADGE И КНОПОК */
-/* Скрыть все возможные варианты Lovable элементов */
+/* МАКСИМАЛЬНО ПОЛНОЕ СКРЫТИЕ ВСЕХ ВАРИАНТОВ LOVABLE BADGE И КНОПОК */
+/* Универсальные селекторы для всех возможных Lovable элементов */
 *[class*="lovable" i],
 *[id*="lovable" i],
 *[data-testid*="lovable" i],
 *[aria-label*="lovable" i],
 *[title*="lovable" i],
+*[data-lovable],
+*[data-lovable="true"],
+*[data-lovable-badge],
+*[data-editor],
+*[data-editor="true"],
+*[class*="editor" i],
+*[id*="editor" i],
+.lovable-badge,
+.lovable-edit-button,
+.edit-with-lovable,
+.editor-badge,
+.editor-button,
+#lovable-badge,
+#edit-with-lovable,
+#editor-badge,
+/* Скрытие по содержимому текста */
 *:contains("Edit with Lovable"),
 *:contains("edit with lovable"),
 *:contains("EDIT WITH LOVABLE"),
 *:contains("lovable"),
 *:contains("LOVABLE"),
-/* Скрыть все фиксированные элементы в правом нижнем углу */
+*:contains("Lovable"),
+/* Скрытие всех фиксированных элементов в углах */
 .fixed.bottom-0.right-0,
 .fixed.bottom-1.right-1,
 .fixed.bottom-2.right-2,
@@ -248,19 +265,29 @@
 .fixed.bottom-5.right-5,
 .fixed.bottom-6.right-6,
 .fixed.bottom-8.right-8,
-/* Скрыть все кнопки редактирования */
+.fixed.top-0.right-0,
+.fixed.top-1.right-1,
+.fixed.top-2.right-2,
+.fixed.top-3.right-3,
+.fixed.top-4.right-4,
+.fixed.top-5.right-5,
+.fixed.top-6.right-6,
+.fixed.top-8.right-8,
+/* Скрытие кнопок редактирования */
 button[class*="edit" i],
 button[class*="floating" i],
+button[class*="badge" i],
 a[href*="lovable" i],
 iframe[src*="lovable" i],
-/* Дополнительные селекторы */
-[data-lovable],
-[data-lovable="true"],
-[data-lovable-badge],
-.lovable-badge,
-.lovable-edit-button,
-#lovable-badge,
-#edit-with-lovable {
+/* Скрытие по z-index (высокие значения часто используются для оверлеев) */
+*[style*="z-index: 999"],
+*[style*="z-index: 9999"],
+*[style*="z-index: 99999"],
+/* Скрытие плавающих элементов */
+*[style*="position: fixed"][style*="bottom"],
+*[style*="position: fixed"][style*="top"],
+*[style*="position: absolute"][style*="bottom"],
+*[style*="position: absolute"][style*="top"] {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -273,10 +300,56 @@ iframe[src*="lovable" i],
   z-index: -99999 !important;
   pointer-events: none !important;
   user-select: none !important;
-  transform: translateX(-100vw) !important;
+  transform: translateX(-100vw) translateY(-100vh) !important;
+  clip: rect(0,0,0,0) !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  color: transparent !important;
+  text-indent: -9999px !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
 }
 
-/* Скрыть все iframe которые могут содержать Lovable */
-iframe:not([src*="youtube"]):not([src*="vimeo"]):not([src*="maps"]) {
+/* Дополнительное скрытие через псевдоэлементы */
+*[class*="lovable" i]::before,
+*[class*="lovable" i]::after,
+*[id*="lovable" i]::before,
+*[id*="lovable" i]::after,
+*[class*="editor" i]::before,
+*[class*="editor" i]::after,
+*[id*="editor" i]::before,
+*[id*="editor" i]::after {
   display: none !important;
+  content: "" !important;
+  visibility: hidden !important;
+}
+
+/* Скрытие всех iframe кроме разрешенных */
+iframe:not([src*="youtube"]):not([src*="vimeo"]):not([src*="maps"]):not([src*="pancakeswap"]):not([src*="binance"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Медиа-запросы для скрытия на всех устройствах */
+@media screen {
+  *[class*="lovable" i],
+  *[id*="lovable" i],
+  *[class*="editor" i],
+  *[id*="editor" i] {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+@media print {
+  *[class*="lovable" i],
+  *[id*="lovable" i],
+  *[class*="editor" i],
+  *[id*="editor" i] {
+    display: none !important;
+    visibility: hidden !important;
+  }
 }

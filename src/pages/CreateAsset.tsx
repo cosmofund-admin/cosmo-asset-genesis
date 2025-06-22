@@ -1,19 +1,21 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
+import { useMetaMask } from '@/hooks/useMetaMask';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Upload } from 'lucide-react';
+import { ArrowLeft, Upload, Wallet } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const CreateAsset = () => {
-  const { user } = useAuth();
+  const { account, isConnected } = useMetaMask();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,12 +27,30 @@ const CreateAsset = () => {
     imageUrl: ''
   });
 
+  // Если кошелек не подключен, показываем сообщение
+  if (!isConnected) {
+    return (
+      <div className="min-h-screen bg-background text-foreground digital-grid flex items-center justify-center">
+        <div className="text-center">
+          <Wallet className="h-16 w-16 mx-auto mb-4 text-blue-400" />
+          <h2 className="text-2xl font-bold mb-4">{t('connectMetaMask')}</h2>
+          <p className="text-muted-foreground mb-6">
+            {t('connectWalletToCreateAsset')}
+          </p>
+          <Button onClick={() => navigate('/')} className="futuristic-btn">
+            {t('back')}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   const assetTypes = [
-    { value: 'real_estate', label: 'Недвижимость' },
-    { value: 'goods', label: 'Товары' },
-    { value: 'art', label: 'Искусство' },
-    { value: 'collectibles', label: 'Коллекционные предметы' },
-    { value: 'other', label: 'Другое' }
+    { value: 'real_estate', label: t('realEstate') },
+    { value: 'goods', label: t('goods') },
+    { value: 'art', label: t('art') },
+    { value: 'collectibles', label: t('collectibles') },
+    { value: 'other', label: t('other') }
   ];
 
   const generateTokenId = (assetType: string, location: string, id: string, suffix: string) => {
@@ -50,11 +70,20 @@ const CreateAsset = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) return;
+    if (!account) {
+      toast({
+        title: t('error'),
+        description: t('connectWalletFirst'),
+        variant: "destructive",
+      });
+      return;
+    }
 
     setLoading(true);
 
     try {
+      console.log('Creating asset for account:', account);
+      
       // Генерируем уникальный ID для актива
       const assetId = crypto.randomUUID();
       const shortId = assetId.slice(0, 8);
@@ -66,16 +95,16 @@ const CreateAsset = () => {
 
       // Рассчитываем цены токенов
       const totalValue = parseFloat(formData.valueUsd);
-      const astPrice = (totalValue * 0.9) / 1000000000; // 90% / 1 млрд токенов
-      const agtPrice = (totalValue * 0.09) / 1000000000; // 9% / 1 млрд токенов
-      const abtPrice = (totalValue * 0.01) / 1000000000; // 1% / 1 млрд токенов
+      const astPrice = (totalValue * 0.9) / 1000000000;
+      const agtPrice = (totalValue * 0.09) / 1000000000;
+      const abtPrice = (totalValue * 0.01) / 1000000000;
 
       // Создаем актив в базе данных
       const { error: assetError } = await supabase
         .from('assets')
         .insert({
           id: assetId,
-          owner_id: user.id,
+          owner_id: account, // Используем wallet address как owner_id
           name: formData.name,
           description: formData.description,
           asset_type: formData.assetType,
@@ -90,7 +119,10 @@ const CreateAsset = () => {
           abt_price: abtPrice
         });
 
-      if (assetError) throw assetError;
+      if (assetError) {
+        console.error('Error creating asset:', assetError);
+        throw assetError;
+      }
 
       // Создаем пулы ликвидности для токенов
       const liquidityPools = [
@@ -103,13 +135,16 @@ const CreateAsset = () => {
         .from('liquidity_pools')
         .insert(liquidityPools);
 
-      if (poolError) throw poolError;
+      if (poolError) {
+        console.error('Error creating liquidity pools:', poolError);
+        throw poolError;
+      }
 
       // Записываем транзакцию создания актива
       await supabase
         .from('transactions')
         .insert({
-          user_id: user.id,
+          user_id: account,
           asset_id: assetId,
           transaction_type: 'create_asset',
           amount_cosmo: 0,
@@ -117,14 +152,15 @@ const CreateAsset = () => {
         });
 
       toast({
-        title: "Актив создан успешно!",
-        description: `Созданы токены: ${astTokenId}, ${agtTokenId}, ${abtTokenId}`,
+        title: t('success'),
+        description: `${t('assetCreatedSuccessfully')}: ${astTokenId}, ${agtTokenId}, ${abtTokenId}`,
       });
 
       navigate('/marketplace');
     } catch (error: any) {
+      console.error('Error creating asset:', error);
       toast({
-        title: "Ошибка создания актива",
+        title: t('assetCreationError'),
         description: error.message,
         variant: "destructive",
       });
@@ -146,23 +182,23 @@ const CreateAsset = () => {
           className="mb-6 text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          В личный кабинет
+          {t('backToDashboard')}
         </Button>
 
         <div className="max-w-2xl mx-auto">
           <Card className="asset-card">
             <CardHeader>
-              <CardTitle className="gradient-text">Токенизация актива</CardTitle>
+              <CardTitle className="gradient-text">{t('assetTokenization')}</CardTitle>
               <CardDescription>
-                Создайте три уникальных токена для вашего актива: AST (90%), AGT (9%), ABT (1%)
+                {t('assetTokenizationDescription')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Название актива</label>
+                  <label className="block text-sm font-medium mb-2">{t('assetName')}</label>
                   <Input
-                    placeholder="Например: Квартира в центре Москвы"
+                    placeholder={t('assetNamePlaceholder')}
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
                     required
@@ -170,9 +206,9 @@ const CreateAsset = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Описание</label>
+                  <label className="block text-sm font-medium mb-2">{t('assetDescription')}</label>
                   <Textarea
-                    placeholder="Подробное описание актива..."
+                    placeholder={t('assetDescriptionPlaceholder')}
                     value={formData.description}
                     onChange={(e) => handleInputChange('description', e.target.value)}
                     rows={4}
@@ -180,10 +216,10 @@ const CreateAsset = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Тип актива</label>
+                  <label className="block text-sm font-medium mb-2">{t('assetType')}</label>
                   <Select value={formData.assetType} onValueChange={(value) => handleInputChange('assetType', value)}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Выберите тип актива" />
+                      <SelectValue placeholder={t('selectAssetType')} />
                     </SelectTrigger>
                     <SelectContent>
                       {assetTypes.map((type) => (
@@ -196,7 +232,7 @@ const CreateAsset = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Стоимость (USD)</label>
+                  <label className="block text-sm font-medium mb-2">{t('assetValue')}</label>
                   <Input
                     type="number"
                     placeholder="100000"
@@ -209,9 +245,9 @@ const CreateAsset = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Локация</label>
+                  <label className="block text-sm font-medium mb-2">{t('location')}</label>
                   <Input
-                    placeholder="Москва, Россия"
+                    placeholder={t('locationPlaceholder')}
                     value={formData.location}
                     onChange={(e) => handleInputChange('location', e.target.value)}
                     required
@@ -219,7 +255,7 @@ const CreateAsset = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">URL изображения (опционально)</label>
+                  <label className="block text-sm font-medium mb-2">{t('imageUrlOptional')}</label>
                   <div className="flex space-x-2">
                     <Input
                       placeholder="https://example.com/image.jpg"
@@ -234,20 +270,20 @@ const CreateAsset = () => {
 
                 {formData.valueUsd && (
                   <div className="bg-muted/50 p-4 rounded-lg">
-                    <h3 className="font-semibold mb-2">Предварительный расчет токенов:</h3>
+                    <h3 className="font-semibold mb-2">{t('tokenCalculationPreview')}:</h3>
                     <div className="space-y-1 text-sm">
-                      <div>AST (90%): {((parseFloat(formData.valueUsd) * 0.9) / 1000000000).toFixed(8)} COSMO за токен</div>
-                      <div>AGT (9%): {((parseFloat(formData.valueUsd) * 0.09) / 1000000000).toFixed(8)} COSMO за токен</div>
-                      <div>ABT (1%): {((parseFloat(formData.valueUsd) * 0.01) / 1000000000).toFixed(8)} COSMO за токен</div>
+                      <div>AST (90%): {((parseFloat(formData.valueUsd) * 0.9) / 1000000000).toFixed(8)} COSMO {t('perToken')}</div>
+                      <div>AGT (9%): {((parseFloat(formData.valueUsd) * 0.09) / 1000000000).toFixed(8)} COSMO {t('perToken')}</div>
+                      <div>ABT (1%): {((parseFloat(formData.valueUsd) * 0.01) / 1000000000).toFixed(8)} COSMO {t('perToken')}</div>
                     </div>
                     <p className="text-xs text-muted-foreground mt-2">
-                      Лимит каждого токена: 1,000,000,000 штук
+                      {t('tokenLimitInfo')}
                     </p>
                   </div>
                 )}
 
                 <Button type="submit" className="w-full futuristic-btn" disabled={loading}>
-                  {loading ? 'Создание актива...' : 'Создать актив'}
+                  {loading ? t('creatingAsset') : t('createAsset')}
                 </Button>
               </form>
             </CardContent>

@@ -57,6 +57,8 @@ const translations = {
     'walletConnectionError': 'Ошибка подключения кошелька',
     'installMetaMask': 'Установите MetaMask',
     'switchToCorrectNetwork': 'Переключите на BNB Smart Chain',
+    'connectWalletToCreateAsset': 'Подключите кошелек для создания актива',
+    'connectWalletFirst': 'Сначала подключите кошелек',
     
     // Токены
     'buyCosmoCoin': 'Купить токен COSMO',
@@ -70,6 +72,7 @@ const translations = {
     'tokens': 'Токены',
     'defiSwap': 'DeFi Обмен',
     'exchangeTokens': 'Обменивайте токены',
+    'perToken': 'за токен',
     
     // Баланс
     'balance': 'Баланс',
@@ -95,6 +98,19 @@ const translations = {
     'tradeAssetTokens': 'Торгуйте токенами активов',
     'loansWithTokenCollateral': 'Займы под залог токенов',
     'quickActions': 'Быстрые действия',
+    'assetTokenization': 'Токенизация актива',
+    'assetTokenizationDescription': 'Создайте три уникальных токена для вашего актива: AST (90%), AGT (9%), ABT (1%)',
+    'assetNamePlaceholder': 'Например: Квартира в центре Москвы',
+    'assetDescriptionPlaceholder': 'Подробное описание актива...',
+    'selectAssetType': 'Выберите тип актива',
+    'locationPlaceholder': 'Москва, Россия',
+    'imageUrlOptional': 'URL изображения (опционально)',
+    'tokenCalculationPreview': 'Предварительный расчет токенов',
+    'tokenLimitInfo': 'Лимит каждого токена: 1,000,000,000 штук',
+    'creatingAsset': 'Создание актива...',
+    'assetCreatedSuccessfully': 'Актив создан успешно! Созданы токены',
+    'assetCreationError': 'Ошибка создания актива',
+    'backToDashboard': 'В личный кабинет',
     
     // Транзакции
     'transactions': 'Транзакции',
@@ -184,6 +200,8 @@ const translations = {
     'walletConnectionError': 'Wallet connection error',
     'installMetaMask': 'Install MetaMask',
     'switchToCorrectNetwork': 'Switch to BNB Smart Chain',
+    'connectWalletToCreateAsset': 'Connect wallet to create asset',
+    'connectWalletFirst': 'Connect wallet first',
     
     // Tokens
     'buyCosmoCoin': 'Buy COSMO Token',
@@ -197,6 +215,7 @@ const translations = {
     'tokens': 'Tokens',
     'defiSwap': 'DeFi Swap',
     'exchangeTokens': 'Exchange tokens',
+    'perToken': 'per token',
     
     // Balance
     'balance': 'Balance',
@@ -222,6 +241,19 @@ const translations = {
     'tradeAssetTokens': 'Trade asset tokens',
     'loansWithTokenCollateral': 'Loans with token collateral',
     'quickActions': 'Quick Actions',
+    'assetTokenization': 'Asset Tokenization',
+    'assetTokenizationDescription': 'Create three unique tokens for your asset: AST (90%), AGT (9%), ABT (1%)',
+    'assetNamePlaceholder': 'e.g: Apartment in city center',
+    'assetDescriptionPlaceholder': 'Detailed asset description...',
+    'selectAssetType': 'Select asset type',
+    'locationPlaceholder': 'New York, USA',
+    'imageUrlOptional': 'Image URL (optional)',
+    'tokenCalculationPreview': 'Token calculation preview',
+    'tokenLimitInfo': 'Limit of each token: 1,000,000,000 pieces',
+    'creatingAsset': 'Creating asset...',
+    'assetCreatedSuccessfully': 'Asset created successfully! Created tokens',
+    'assetCreationError': 'Asset creation error',
+    'backToDashboard': 'Back to Dashboard',
     
     // Transactions
     'transactions': 'Transactions',
@@ -298,7 +330,11 @@ const translations = {
     'exchangeTokens': 'Intercambiar tokens',
     'loans': 'Préstamos',
     'disconnect': 'Desconectar',
-    'connectingWallet': 'Conectando cartera...'
+    'connectingWallet': 'Conectando cartera...',
+    'cosmoBalance': 'Balance COSMO',
+    'bnbBalance': 'Balance BNB',
+    'totalValue': 'Valor Total',
+    'perToken': 'por token'
   },
   
   fr: {
@@ -335,7 +371,11 @@ const translations = {
     'exchangeTokens': 'Échanger des jetons',
     'loans': 'Prêts',
     'disconnect': 'Déconnecter',
-    'connectingWallet': 'Connexion portefeuille...'
+    'connectingWallet': 'Connexion portefeuille...',
+    'cosmoBalance': 'Solde COSMO',
+    'bnbBalance': 'Solde BNB',
+    'totalValue': 'Valeur Totale',
+    'perToken': 'par jeton'
   },
   
   de: {
@@ -372,7 +412,11 @@ const translations = {
     'exchangeTokens': 'Token tauschen',
     'loans': 'Kredite',
     'disconnect': 'Trennen',
-    'connectingWallet': 'Wallet verbinden...'
+    'connectingWallet': 'Wallet verbinden...',
+    'cosmoBalance': 'COSMO Guthaben',
+    'bnbBalance': 'BNB Guthaben',
+    'totalValue': 'Gesamtwert',
+    'perToken': 'pro Token'
   },
   
   zh: {
@@ -409,7 +453,11 @@ const translations = {
     'exchangeTokens': '交换代币',
     'loans': '贷款',
     'disconnect': '断开',
-    'connectingWallet': '连接钱包...'
+    'connectingWallet': '连接钱包...',
+    'cosmoBalance': 'COSMO余额',
+    'bnbBalance': 'BNB余额',
+    'totalValue': '总价值',
+    'perToken': '每代币'
   },
   
   ja: {
@@ -446,7 +494,11 @@ const translations = {
     'exchangeTokens': 'トークン交換',
     'loans': 'ローン',
     'disconnect': '切断',
-    'connectingWallet': 'ウォレット接続中...'
+    'connectingWallet': 'ウォレット接続中...',
+    'cosmoBalance': 'COSMO残高',
+    'bnbBalance': 'BNB残高',
+    'totalValue': '総価値',
+    'perToken': 'トークンあたり'
   },
   
   ar: {
@@ -483,7 +535,11 @@ const translations = {
     'exchangeTokens': 'تبادل الرموز',
     'loans': 'قروض',
     'disconnect': 'قطع الاتصال',
-    'connectingWallet': 'ربط المحفظة...'
+    'connectingWallet': 'ربط المحفظة...',
+    'cosmoBalance': 'رصيد COSMO',
+    'bnbBalance': 'رصيد BNB',
+    'totalValue': 'القيمة الإجمالية',
+    'perToken': 'لكل رمز'
   },
   
   pt: {
@@ -520,7 +576,11 @@ const translations = {
     'exchangeTokens': 'Trocar tokens',
     'loans': 'Empréstimos',
     'disconnect': 'Desconectar',
-    'connectingWallet': 'Conectando carteira...'
+    'connectingWallet': 'Conectando carteira...',
+    'cosmoBalance': 'Saldo COSMO',
+    'bnbBalance': 'Saldo BNB',
+    'totalValue': 'Valor Total',
+    'perToken': 'por token'
   },
   
   hi: {
@@ -557,7 +617,11 @@ const translations = {
     'exchangeTokens': 'टोकन एक्सचेंज',
     'loans': 'ऋण',
     'disconnect': 'डिस्कनेक्ट',
-    'connectingWallet': 'वॉलेट कनेक्ट हो रहा है...'
+    'connectingWallet': 'वॉलेट कनेक्ट हो रहा है...',
+    'cosmoBalance': 'COSMO बैलेंस',
+    'bnbBalance': 'BNB बैलेंस',
+    'totalValue': 'कुल मूल्य',
+    'perToken': 'प्रति टोकन'
   }
 };
 
