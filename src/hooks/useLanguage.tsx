@@ -94,12 +94,21 @@ const translations: Record<Language, Translations> = {
     connectWalletFirst: 'Пожалуйста, сначала подключите кошелек',
     assetCreationError: 'Ошибка при создании актива',
     backToDashboard: 'Назад к панели',
-    dashboard: 'Панель управления',
     loading: 'Загрузка...',
     balance: 'Баланс',
     cosmoBalance: 'Баланс COSMO',
     bnbBalance: 'Баланс BNB',
     totalValue: 'Общая стоимость',
+    
+    // Dashboard
+    quickActions: 'Быстрые действия',
+    tokenizeYourAsset: 'Токенизируйте ваш актив',
+    tradeAssetTokens: 'Торгуйте токенами активов',
+    loans: 'Займы',
+    loansWithTokenCollateral: 'Займы под залог токенов',
+    defiSwap: 'DeFi обмен',
+    exchangeTokens: 'Обменять токены',
+    open: 'Открыть',
   },
   en: {
     // Header
@@ -207,8 +216,6 @@ const translations: Record<Language, Translations> = {
     dashboard: 'Panel',
     connectWallet: 'Conectar billetera',
     disconnect: 'Desconectar',
-    
-    // Hero section
     tokenizeRealAssets: 'Tokenizar',
     realAssets: 'activos reales',
     heroSubtitle: 'Convierte bienes raíces, mercancías y otros activos en tokens digitales usando tecnología blockchain',
@@ -217,16 +224,12 @@ const translations: Record<Language, Translations> = {
     assetTrading: 'Comercio de activos',
     startTokenization: 'Comenzar tokenización',
     exploreMarketplace: 'Explorar mercado',
-    
-    // Features
     highLiquidity: 'Alta liquidez',
     highLiquidityDesc: 'Comercia activos 24/7 en una plataforma descentralizada',
     security: 'Seguridad',
     securityDesc: 'Protegido por tecnología blockchain y contratos inteligentes',
     tripleTokenization: 'Triple tokenización',
     tripleTokenizationDesc: 'Tokens AST, AGT y ABT para máxima flexibilidad',
-    
-    // Keep existing Spanish translations and add missing ones
     connectMetaMask: 'Conectar MetaMask',
     connectWalletToCreateAsset: 'Por favor, conecta tu billetera para crear un activo',
     back: 'Atrás',
@@ -261,8 +264,6 @@ const translations: Record<Language, Translations> = {
     cosmoBalance: 'Saldo COSMO',
     bnbBalance: 'Saldo BNB',
     totalValue: 'Valor total',
-    
-    // Add missing dashboard translations
     howToStartTitle: 'Cómo empezar',
     howToStartDescription: 'Pasos simples para comenzar a tokenizar tus activos',
     step1Title: 'Conectar billetera',
@@ -292,7 +293,7 @@ const translations: Record<Language, Translations> = {
     open: 'Abrir',
   },
   fr: {
-    // Keep existing French translations and add missing ones...
+    // Header
     home: 'Accueil',
     howToStart: 'Comment commencer',
     about: 'À propos',
@@ -377,7 +378,7 @@ const translations: Record<Language, Translations> = {
     open: 'Ouvrir',
   },
   de: {
-    // Keep existing German translations and add missing ones...
+    // Header
     home: 'Startseite',
     howToStart: 'Wie anfangen',
     about: 'Über uns',
@@ -462,7 +463,7 @@ const translations: Record<Language, Translations> = {
     open: 'Öffnen',
   },
   zh: {
-    // Keep existing Chinese translations and add missing ones...
+    // Header
     home: '首页',
     howToStart: '如何开始',
     about: '关于我们',
@@ -547,7 +548,7 @@ const translations: Record<Language, Translations> = {
     open: '打开',
   },
   ja: {
-    // Keep existing Japanese translations and add missing ones...
+    // Header
     home: 'ホーム',
     howToStart: '始め方',
     about: '私たちについて',
@@ -632,7 +633,7 @@ const translations: Record<Language, Translations> = {
     open: '開く',
   },
   ar: {
-    // Keep existing Arabic translations and add missing ones...
+    // Header
     home: 'الرئيسية',
     howToStart: 'كيفية البدء',
     about: 'حول',
@@ -704,7 +705,7 @@ const translations: Record<Language, Translations> = {
     missionDescription: 'نسعى لجعل الاستثمار في الأصول الحقيقية متاحاً للجميع من خلال تقنية البلوك تشين',
     featuresTitle: 'ميزاتنا',
     feature1: 'أمان قائم على البلوك تشين',
-    feature2: 'إمكانية الوصول العالمي',
+    feature2: 'امكانية الوصول العالمي',
     feature3: 'معاملات فورية',
     feature4: 'مجتمع المستثمرين',
     quickActions: 'إجراءات سريعة',
@@ -717,7 +718,7 @@ const translations: Record<Language, Translations> = {
     open: 'فتح',
   },
   pt: {
-    // Keep existing Portuguese translations and add missing ones...
+    // Header
     home: 'Início',
     howToStart: 'Como começar',
     about: 'Sobre',
@@ -802,7 +803,7 @@ const translations: Record<Language, Translations> = {
     open: 'Abrir',
   },
   hi: {
-    // Keep existing Hindi translations and add missing ones...
+    // Header
     home: 'होम',
     howToStart: 'कैसे शुरू करें',
     about: 'हमारे बारे में',
