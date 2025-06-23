@@ -23,7 +23,7 @@ const translations: Record<Language, Translations> = {
     collectibles: 'Коллекционные предметы',
     other: 'Другое',
     assetName: 'Название актива',
-    assetNamePlaceholder: 'Введите название актива',
+    assetNamePlaceholder: 'Квартира в центре Алматы',
     assetDescription: 'Описание актива',
     assetDescriptionPlaceholder: 'Например: Квартира в центре Алматы, 2 комнаты, 65 кв.м.',
     assetType: 'Тип актива',
