@@ -98,6 +98,40 @@ const Loans = () => {
     e.preventDefault();
     if (!account) return;
 
+    // Валидация формы
+    if (!borrowForm.assetId || !borrowForm.tokenType || !borrowForm.collateralAmount || !borrowForm.loanAmount) {
+      toast({
+        title: "Ошибка валидации",
+        description: "Пожалуйста, заполните все обязательные поля",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const collateralAmount = parseFloat(borrowForm.collateralAmount);
+    const loanAmount = parseFloat(borrowForm.loanAmount);
+
+    if (collateralAmount <= 0 || loanAmount <= 0) {
+      toast({
+        title: "Ошибка валидации",
+        description: "Суммы должны быть больше нуля",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Проверка минимального коэффициента залога (например, 150%)
+    const minCollateralRatio = 1.5;
+    const collateralValue = collateralAmount * 0.1; // Предполагаем курс токена к COSMO
+    if (collateralValue < loanAmount * minCollateralRatio) {
+      toast({
+        title: "Недостаточное обеспечение",
+        description: `Минимальный коэффициент залога: ${minCollateralRatio * 100}%`,
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -110,11 +144,12 @@ const Loans = () => {
           borrower_id: account,
           asset_id: borrowForm.assetId,
           collateral_token_type: borrowForm.tokenType,
-          collateral_amount: parseFloat(borrowForm.collateralAmount),
-          loan_amount_cosmo: parseFloat(borrowForm.loanAmount),
+          collateral_amount: collateralAmount,
+          loan_amount_cosmo: loanAmount,
           interest_rate: parseFloat(borrowForm.interestRate),
           loan_duration_days: parseInt(borrowForm.duration),
-          due_date: dueDate.toISOString()
+          due_date: dueDate.toISOString(),
+          status: 'active'
         });
 
       if (error) throw error;
@@ -126,14 +161,14 @@ const Loans = () => {
           user_id: account,
           asset_id: borrowForm.assetId,
           transaction_type: 'borrow',
-          amount_cosmo: parseFloat(borrowForm.loanAmount),
+          amount_cosmo: loanAmount,
           token_type: borrowForm.tokenType,
-          token_amount: parseFloat(borrowForm.collateralAmount)
+          token_amount: collateralAmount
         });
 
       toast({
-        title: "Заявка на кредит создана",
-        description: "Ожидайте одобрения от кредиторов",
+        title: "Кредит успешно получен",
+        description: `Получено ${loanAmount} COSMO под залог ${collateralAmount} ${borrowForm.tokenType} токенов`,
       });
 
       setBorrowForm({
@@ -148,7 +183,7 @@ const Loans = () => {
       fetchLoans();
     } catch (error: any) {
       toast({
-        title: "Ошибка создания заявки",
+        title: "Ошибка получения кредита",
         description: error.message,
         variant: "destructive",
       });
@@ -237,115 +272,135 @@ const Loans = () => {
                   Получить кредит под залог токенов
                 </CardTitle>
                 <CardDescription>
-                  Используйте ваши токены в качестве залога для получения кредита в COSMO
+                  Используйте ваши токенизированные активы в качестве залога для получения кредита в COSMO
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleBorrowSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Актив для залога</label>
-                      <Select 
-                        value={borrowForm.assetId} 
-                        onValueChange={(value) => setBorrowForm(prev => ({ ...prev, assetId: value }))}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите актив" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {assets.map((asset) => (
-                            <SelectItem key={asset.id} value={asset.id}>
-                              {asset.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Тип токена</label>
-                      <Select 
-                        value={borrowForm.tokenType} 
-                        onValueChange={(value) => setBorrowForm(prev => ({ ...prev, tokenType: value }))}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Выберите тип токена" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="AST">Стабильный (AST)</SelectItem>
-                          <SelectItem value="AGT">Поддержки (AGT)</SelectItem>
-                          <SelectItem value="ABT">Брендовый (ABT)</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                {assets.length === 0 ? (
+                  <div className="text-center py-8">
+                    <p className="text-muted-foreground mb-4">
+                      У вас нет токенизированных активов для залога
+                    </p>
+                    <Button onClick={() => navigate('/create-asset')} className="futuristic-btn">
+                      Создать актив
+                    </Button>
                   </div>
+                ) : (
+                  <form onSubmit={handleBorrowSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Актив для залога</label>
+                        <Select 
+                          value={borrowForm.assetId} 
+                          onValueChange={(value) => setBorrowForm(prev => ({ ...prev, assetId: value }))}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Выберите актив" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {assets.map((asset) => (
+                              <SelectItem key={asset.id} value={asset.id}>
+                                {asset.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Количество токенов для залога</label>
-                      <Input
-                        type="number"
-                        placeholder="1000"
-                        value={borrowForm.collateralAmount}
-                        onChange={(e) => setBorrowForm(prev => ({ ...prev, collateralAmount: e.target.value }))}
-                        required
-                        min="1"
-                        step="0.001"
-                      />
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Тип токена</label>
+                        <Select 
+                          value={borrowForm.tokenType} 
+                          onValueChange={(value) => setBorrowForm(prev => ({ ...prev, tokenType: value }))}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Выберите тип токена" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="AST">Стабильный (AST)</SelectItem>
+                            <SelectItem value="AGT">Поддержки (AGT)</SelectItem>
+                            <SelectItem value="ABT">Брендовый (ABT)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Сумма кредита (COSMO)</label>
-                      <Input
-                        type="number"
-                        placeholder="500"
-                        value={borrowForm.loanAmount}
-                        onChange={(e) => setBorrowForm(prev => ({ ...prev, loanAmount: e.target.value }))}
-                        required
-                        min="1"
-                        step="0.001"
-                      />
-                    </div>
-                  </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Количество токенов для залога</label>
+                        <Input
+                          type="number"
+                          placeholder="1000"
+                          value={borrowForm.collateralAmount}
+                          onChange={(e) => setBorrowForm(prev => ({ ...prev, collateralAmount: e.target.value }))}
+                          required
+                          min="1"
+                          step="0.001"
+                        />
+                      </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Срок (дни)</label>
-                      <Select 
-                        value={borrowForm.duration} 
-                        onValueChange={(value) => setBorrowForm(prev => ({ ...prev, duration: value }))}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="7">7 дней</SelectItem>
-                          <SelectItem value="14">14 дней</SelectItem>
-                          <SelectItem value="30">30 дней</SelectItem>
-                          <SelectItem value="60">60 дней</SelectItem>
-                          <SelectItem value="90">90 дней</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Сумма кредита (COSMO)</label>
+                        <Input
+                          type="number"
+                          placeholder="500"
+                          value={borrowForm.loanAmount}
+                          onChange={(e) => setBorrowForm(prev => ({ ...prev, loanAmount: e.target.value }))}
+                          required
+                          min="1"
+                          step="0.001"
+                        />
+                      </div>
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Процентная ставка (%)</label>
-                      <Input
-                        type="number"
-                        value={borrowForm.interestRate}
-                        onChange={(e) => setBorrowForm(prev => ({ ...prev, interestRate: e.target.value }))}
-                        required
-                        min="0.1"
-                        max="50"
-                        step="0.1"
-                      />
-                    </div>
-                  </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Срок (дни)</label>
+                        <Select 
+                          value={borrowForm.duration} 
+                          onValueChange={(value) => setBorrowForm(prev => ({ ...prev, duration: value }))}
+                        >
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="7">7 дней</SelectItem>
+                            <SelectItem value="14">14 дней</SelectItem>
+                            <SelectItem value="30">30 дней</SelectItem>
+                            <SelectItem value="60">60 дней</SelectItem>
+                            <SelectItem value="90">90 дней</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
 
-                  <Button type="submit" className="w-full futuristic-btn" disabled={loading}>
-                    {loading ? 'Создание заявки...' : 'Подать заявку на кредит'}
-                  </Button>
-                </form>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Процентная ставка (%)</label>
+                        <Input
+                          type="number"
+                          value={borrowForm.interestRate}
+                          onChange={(e) => setBorrowForm(prev => ({ ...prev, interestRate: e.target.value }))}
+                          required
+                          min="0.1"
+                          max="50"
+                          step="0.1"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+                      <h4 className="font-semibold mb-2">Информация о кредите:</h4>
+                      <ul className="text-sm text-muted-foreground space-y-1">
+                        <li>• Минимальный коэффициент залога: 150%</li>
+                        <li>• Комиссия за выдачу: 0.5%</li>
+                        <li>• При просрочке актив может быть ликвидирован</li>
+                      </ul>
+                    </div>
+
+                    <Button type="submit" className="w-full futuristic-btn" disabled={loading}>
+                      {loading ? 'Обработка кредита...' : 'Получить кредит'}
+                    </Button>
+                  </form>
+                )}
               </CardContent>
             </Card>
           </TabsContent>

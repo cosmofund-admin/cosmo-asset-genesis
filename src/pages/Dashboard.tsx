@@ -69,7 +69,7 @@ const Dashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          <BalanceCard profile={profile} balance={balance} />
+          <BalanceCard profile={profile} balance={balance} account={account} />
           <CosmoSwap />
           <PortfolioStats assets={assets} userTokens={userTokens} transactions={transactions} />
         </div>
