@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
+import { useMetaMask } from '@/hooks/useMetaMask';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -35,7 +34,7 @@ interface Loan {
 }
 
 const Loans = () => {
-  const { user } = useAuth();
+  const { account, isConnected } = useMetaMask();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [assets, setAssets] = useState<Asset[]>([]);
@@ -60,17 +59,19 @@ const Loans = () => {
   });
 
   useEffect(() => {
-    if (user) {
+    if (isConnected && account) {
       fetchAssets();
       fetchLoans();
     }
-  }, [user]);
+  }, [isConnected, account]);
 
   const fetchAssets = async () => {
+    if (!account) return;
+    
     const { data, error } = await supabase
       .from('assets')
       .select('id, name, ast_token_id, agt_token_id, abt_token_id')
-      .eq('owner_id', user?.id);
+      .eq('owner_id', account);
     
     if (!error && data) {
       setAssets(data);
@@ -78,13 +79,15 @@ const Loans = () => {
   };
 
   const fetchLoans = async () => {
+    if (!account) return;
+    
     const { data, error } = await supabase
       .from('loans')
       .select(`
         *,
         assets (id, name, ast_token_id, agt_token_id, abt_token_id)
       `)
-      .or(`borrower_id.eq.${user?.id},lender_id.eq.${user?.id}`);
+      .or(`borrower_id.eq.${account},lender_id.eq.${account}`);
     
     if (!error && data) {
       setLoans(data);
@@ -93,7 +96,7 @@ const Loans = () => {
 
   const handleBorrowSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) return;
+    if (!account) return;
 
     setLoading(true);
 
@@ -104,7 +107,7 @@ const Loans = () => {
       const { error } = await supabase
         .from('loans')
         .insert({
-          borrower_id: user.id,
+          borrower_id: account,
           asset_id: borrowForm.assetId,
           collateral_token_type: borrowForm.tokenType,
           collateral_amount: parseFloat(borrowForm.collateralAmount),
@@ -120,7 +123,7 @@ const Loans = () => {
       await supabase
         .from('transactions')
         .insert({
-          user_id: user.id,
+          user_id: account,
           asset_id: borrowForm.assetId,
           transaction_type: 'borrow',
           amount_cosmo: parseFloat(borrowForm.loanAmount),
@@ -180,6 +183,26 @@ const Loans = () => {
     };
     return colorMap[status] || 'bg-gray-500';
   };
+
+  // Redirect to home if not connected
+  if (!isConnected) {
+    return (
+      <div className="min-h-screen bg-background text-foreground digital-grid flex items-center justify-center">
+        <Card className="asset-card">
+          <CardContent className="text-center py-16">
+            <div className="text-6xl mb-4">🦊</div>
+            <h3 className="text-xl font-semibold mb-2">Подключите MetaMask</h3>
+            <p className="text-muted-foreground mb-4">
+              Для доступа к кредитованию необходимо подключить кошелек MetaMask
+            </p>
+            <Button onClick={() => navigate('/')} className="futuristic-btn">
+              Вернуться на главную
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground digital-grid">
