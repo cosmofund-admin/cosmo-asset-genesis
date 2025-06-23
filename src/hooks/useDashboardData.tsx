@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import type { Profile, Asset, UserToken, Transaction } from '@/types/dashboard';
@@ -38,6 +37,7 @@ export const useDashboardData = (account: string | null) => {
         const { data: newProfile, error: createError } = await supabase
           .from('profiles')
           .insert({ 
+            id: account as string,
             wallet_address: account,
             cosmo_balance: 10000,
             bnb_balance: 1
