@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'ru' | 'en' | 'es' | 'fr' | 'de' | 'zh' | 'ja' | 'ar' | 'pt' | 'hi';
@@ -110,6 +109,14 @@ const translations: Record<Language, Translations> = {
     defiSwap: 'DeFi обмен',
     exchangeTokens: 'Обменять токены',
     open: 'Открыть',
+    
+    // Additional translations for TransactionHistory and other components
+    noTransactionsToDisplay: 'Нет транзакций для отображения',
+    type: 'Тип',
+    cosmoAmount: 'Сумма COSMO',
+    asset: 'Актив',
+    date: 'Дата',
+    assetId: 'ID Актива',
   },
   en: {
     // Header
@@ -207,6 +214,14 @@ const translations: Record<Language, Translations> = {
     defiSwap: 'DeFi Swap',
     exchangeTokens: 'Exchange tokens',
     open: 'Open',
+    
+    // Additional translations for TransactionHistory and other components
+    noTransactionsToDisplay: 'No transactions to display',
+    type: 'Type',
+    cosmoAmount: 'COSMO Amount',
+    asset: 'Asset',
+    date: 'Date',
+    assetId: 'Asset ID',
   },
   es: {
     // Header
@@ -280,7 +295,7 @@ const translations: Record<Language, Translations> = {
     imageUrlOptional: 'URL de la imagen (opcional)',
     tokenCalculationPreview: 'Vista previa del cálculo del precio del token',
     perToken: 'por token',
-    tokenLimitInfo: 'El valor total se distribuye entre los tokens AST, AGT y ABT',
+    tokenLimitInfo: 'El valor total se distribuye entre los tokens AST, AGT, y ABT',
     creatingAsset: 'Creando activo...',
     createAsset: 'Crear activo',
     success: 'Éxito',
@@ -304,6 +319,14 @@ const translations: Record<Language, Translations> = {
     defiSwap: 'Intercambio DeFi',
     exchangeTokens: 'Intercambiar tokens',
     open: 'Abrir',
+    
+    // Additional translations for TransactionHistory and other components
+    noTransactionsToDisplay: 'No hay transacciones para mostrar',
+    type: 'Tipo',
+    cosmoAmount: 'Cantidad COSMO',
+    asset: 'Activo',
+    date: 'Fecha',
+    assetId: 'ID del Activo',
   },
   fr: {
     // Header
@@ -329,7 +352,7 @@ const translations: Record<Language, Translations> = {
     highLiquidity: 'Haute liquidité',
     highLiquidityDesc: 'Échangez des actifs 24/7 sur une plateforme décentralisée',
     security: 'Sécurité',
-    securityDesc: 'Protégé par la technologie blockchain et les contrats intelligents',
+    securityDesc: 'Protégé par la technologie blockchain et contrats intelligents',
     tripleTokenization: 'Triple tokenisation',
     tripleTokenizationDesc: 'Tokens AST, AGT et ABT pour une flexibilité maximale',
     
@@ -349,7 +372,7 @@ const translations: Record<Language, Translations> = {
     aboutTitle: 'À propos de la plateforme',
     aboutDescription: 'Cosmo RWA est une plateforme révolutionnaire pour la tokenisation d\'actifs réels',
     missionTitle: 'Notre mission',
-    missionDescription: 'Nous nous efforçons de rendre les investissements en actifs réels accessibles à tous grâce à la technologie blockchain',
+    missionDescription: 'Nous nous esforçons de rendre les investissements en actifs réels accessibles à tous grâce à la technologie blockchain',
     featuresTitle: 'Nos fonctionnalités',
     feature1: 'Sécurité basée sur la blockchain',
     feature2: 'Accessibilité mondiale',
@@ -401,6 +424,14 @@ const translations: Record<Language, Translations> = {
     defiSwap: 'Échange DeFi',
     exchangeTokens: 'Échanger des tokens',
     open: 'Ouvrir',
+    
+    // Additional translations for TransactionHistory and other components
+    noTransactionsToDisplay: 'Aucune transaction à afficher',
+    type: 'Type',
+    cosmoAmount: 'Montant COSMO',
+    asset: 'Actif',
+    date: 'Date',
+    assetId: 'ID de l\'Actif',
   },
   de: {
     // Header
@@ -428,7 +459,7 @@ const translations: Record<Language, Translations> = {
     security: 'Sicherheit',
     securityDesc: 'Geschützt durch Blockchain-Technologie und Smart Contracts',
     tripleTokenization: 'Dreifache Tokenisierung',
-    tripleTokenizationDesc: 'AST-, AGT- und ABT-Token für maximale Flexibilität',
+    tripleTokenizationDesc: 'Tokens AST, AGT und ABT für maximale Flexibilität',
     
     // How to start
     howToStartTitle: 'Wie anfangen',
@@ -470,8 +501,8 @@ const translations: Record<Language, Translations> = {
     selectAssetType: 'Asset-Typ auswählen',
     assetValue: 'Asset-Wert (USD)',
     location: 'Standort',
-    locationPlaceholder: 'Standort eingeben',
-    imageUrlOptional: 'Bild-URL (optional)',
+    locationPlaceholder: "Standort eingeben",
+    imageUrlOptional: "Bild-URL (optional)",
     tokenCalculationPreview: 'Vorschau der Token-Preisberechnung',
     perToken: 'pro Token',
     tokenLimitInfo: 'Der Gesamtwert wird auf die Token AST, AGT und ABT verteilt',
@@ -498,6 +529,14 @@ const translations: Record<Language, Translations> = {
     defiSwap: 'DeFi-Tausch',
     exchangeTokens: 'Token tauschen',
     open: 'Öffnen',
+    
+    // Additional translations for TransactionHistory and other components
+    noTransactionsToDisplay: 'Keine Transaktionen anzuzeigen',
+    type: 'Typ',
+    cosmoAmount: 'COSMO Betrag',
+    asset: 'Asset',
+    date: 'Datum',
+    assetId: 'Asset-ID',
   },
   zh: {
     // Header
@@ -595,6 +634,14 @@ const translations: Record<Language, Translations> = {
     defiSwap: 'DeFi交换',
     exchangeTokens: '交换代币',
     open: '打开',
+    
+    // Additional translations for TransactionHistory and other components
+    noTransactionsToDisplay: '没有要显示的交易',
+    type: '类型',
+    cosmoAmount: 'COSMO 数量',
+    asset: '资产',
+    date: '日期',
+    assetId: '资产ID',
   },
   ja: {
     // Header
@@ -692,6 +739,14 @@ const translations: Record<Language, Translations> = {
     defiSwap: 'DeFiスワップ',
     exchangeTokens: 'トークン交換',
     open: '開く',
+    
+    // Additional translations for TransactionHistory and other components
+    noTransactionsToDisplay: '表示する取引がありません',
+    type: 'タイプ',
+    cosmoAmount: 'COSMO 金額',
+    asset: '資産',
+    date: '日付',
+    assetId: '資産ID',
   },
   ar: {
     // Header
@@ -776,8 +831,8 @@ const translations: Record<Language, Translations> = {
     backToDashboard: 'العودة إلى لوحة التحكم',
     loading: 'جارٍ التحميل...',
     balance: 'الرصيد',
-    cosmoBalance: 'رصيد COSMO',
-    bnbBalance: 'رصيد BNB',
+    cosmoBalance: 'COSMO رصيد',
+    bnbBalance: 'BNB رصيد',
     totalValue: 'القيمة الإجمالية',
     
     // Dashboard
@@ -789,6 +844,14 @@ const translations: Record<Language, Translations> = {
     defiSwap: 'تبديل DeFi',
     exchangeTokens: 'تبديل الرموز',
     open: 'فتح',
+    
+    // Additional translations for TransactionHistory and other components
+    noTransactionsToDisplay: 'لا توجد معاملات للعرض',
+    type: 'النوع',
+    cosmoAmount: 'مبلغ COSMO',
+    asset: 'الأصل',
+    date: 'التاريخ',
+    assetId: 'معرف الأصل',
   },
   pt: {
     // Header
@@ -886,6 +949,14 @@ const translations: Record<Language, Translations> = {
     defiSwap: 'Swap DeFi',
     exchangeTokens: 'Trocar tokens',
     open: 'Abrir',
+    
+    // Additional translations for TransactionHistory and other components
+    noTransactionsToDisplay: 'Nenhuma transação para exibir',
+    type: 'Tipo',
+    cosmoAmount: 'Quantia COSMO',
+    asset: 'Ativo',
+    date: 'Data',
+    assetId: 'ID do Ativo',
   },
   hi: {
     // Header
@@ -983,6 +1054,14 @@ const translations: Record<Language, Translations> = {
     defiSwap: 'DeFi स्वैप',
     exchangeTokens: 'टोकन एक्सचेंज करें',
     open: 'खोलें',
+    
+    // Additional translations for TransactionHistory and other components
+    noTransactionsToDisplay: 'प्रदर्शित करने के लिए कोई लेनदेन नहीं',
+    type: 'प्रकार',
+    cosmoAmount: 'COSMO राशि',
+    asset: 'संपत्ति',
+    date: 'दिनांक',
+    assetId: 'संपत्ति ID',
   },
 };
 

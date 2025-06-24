@@ -14,7 +14,7 @@ const TransactionHistory = ({ transactions }: TransactionHistoryProps) => {
       <h2 className="text-2xl font-bold gradient-text mb-4">{t('transactionHistory')}</h2>
       {transactions.length === 0 ? (
         <div className="text-center py-8">
-          <p className="text-muted-foreground">Нет транзакций для отображения</p>
+          <p className="text-muted-foreground">{t('noTransactionsToDisplay')}</p>
         </div>
       ) : (
         <div className="overflow-x-auto">
@@ -22,16 +22,16 @@ const TransactionHistory = ({ transactions }: TransactionHistoryProps) => {
             <thead className="bg-secondary">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                  Тип
+                  {t('type')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                  Сумма COSMO
+                  {t('cosmoAmount')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                  Актив
+                  {t('asset')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                  Дата
+                  {t('date')}
                 </th>
               </tr>
             </thead>
@@ -45,7 +45,7 @@ const TransactionHistory = ({ transactions }: TransactionHistoryProps) => {
                     <div className="text-sm">{transaction.amount_cosmo || 0}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm">Asset ID: {transaction.asset_id}</div>
+                    <div className="text-sm">{t('assetId')}: {transaction.asset_id}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm">{new Date(transaction.created_at).toLocaleString()}</div>
