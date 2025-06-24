@@ -1,25 +1,28 @@
 
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   const links = {
     product: [
-      { name: "Токенизация", href: "#" },
-      { name: "Маркетплейс", href: "#" },
-      { name: "Кредитование", href: "#" },
-      { name: "Ликвидность", href: "#" }
+      { name: t('tokenization'), href: "#features" },
+      { name: t('marketplace'), href: "/marketplace" },
+      { name: t('lending'), href: "/loans" },
+      { name: t('liquidity'), href: "#features" }
     ],
     support: [
-      { name: "Документация", href: "#" },
-      { name: "Как начать", href: "#" },
-      { name: "FAQ", href: "#" },
-      { name: "Поддержка", href: "#" }
+      { name: t('documentation'), href: "#" },
+      { name: t('howToStart'), href: "#how-to-start" },
+      { name: t('faq'), href: "#" },
+      { name: t('support'), href: "#" }
     ],
     company: [
-      { name: "О нас", href: "#" },
-      { name: "Команда", href: "#" },
-      { name: "Карьера", href: "#" },
-      { name: "Блог", href: "#" }
+      { name: t('aboutUs'), href: "#about" },
+      { name: t('team'), href: "#" },
+      { name: t('careers'), href: "#" },
+      { name: t('blog'), href: "#" }
     ]
   };
 
@@ -34,8 +37,7 @@ const Footer = () => {
               <span className="text-xl font-bold gradient-text">Cosmo RWA</span>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Первая децентрализованная платформа для токенизации реальных активов 
-              с автоматическим созданием трех уникальных токенов.
+              {t('platformDescription')}
             </p>
             
             {/* Социальные сети */}
@@ -57,7 +59,7 @@ const Footer = () => {
 
           {/* Продукт */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Продукт</h3>
+            <h3 className="font-semibold text-foreground mb-4">{t('product')}</h3>
             <ul className="space-y-2">
               {links.product.map((link) => (
                 <li key={link.name}>
@@ -74,7 +76,7 @@ const Footer = () => {
 
           {/* Поддержка */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Поддержка</h3>
+            <h3 className="font-semibold text-foreground mb-4">{t('supportSection')}</h3>
             <ul className="space-y-2">
               {links.support.map((link) => (
                 <li key={link.name}>
@@ -91,7 +93,7 @@ const Footer = () => {
 
           {/* Компания */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Компания</h3>
+            <h3 className="font-semibold text-foreground mb-4">{t('company')}</h3>
             <ul className="space-y-2">
               {links.company.map((link) => (
                 <li key={link.name}>
@@ -111,17 +113,17 @@ const Footer = () => {
         <div className="border-t border-border mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-muted-foreground text-sm">
-              © 2024 Cosmo RWA. Все права защищены.
+              {t('copyright')}
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
-                Политика конфиденциальности
+                {t('privacyPolicy')}
               </a>
               <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
-                Условия использования
+                {t('termsOfUse')}
               </a>
               <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
-                Правовая информация
+                {t('legalInformation')}
               </a>
             </div>
           </div>
