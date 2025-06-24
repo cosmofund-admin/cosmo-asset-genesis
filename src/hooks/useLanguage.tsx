@@ -40,6 +40,35 @@ const translations: Record<Language, Translations> = {
     securityDesc: 'Защищено блокчейн технологиями и смарт-контрактами',
     tripleTokenization: 'Тройная токенизация',
     tripleTokenizationDesc: 'AST, AGT и ABT токены для максимальной гибкости',
+
+    // Features section - Экосистема будущего
+    futureEcosystem: 'Экосистема будущего',
+    futureEcosystemDesc: 'Cosmo RWA предоставляет полный набор инструментов для работы с токенизированными активами',
+    assetTokenization: 'Токенизация активов',
+    assetTokenizationDesc: 'Превратите любой реальный актив в цифровые токены с автоматическим распределением',
+    marketplaceDesc: 'Торгуйте токенизированными активами в децентрализованной среде',
+    liquidityPools: 'Пулы ликвидности',
+    liquidityPoolsDesc: 'Создавайте и управляйте ликвидностью для максимизации доходности',
+    lendingDesc: 'Получайте кредиты под залог токенов или выдавайте займы другим пользователям',
+    personalCabinet: 'Личный кабинет',
+    personalCabinetDesc: 'Отслеживайте все ваши активы, транзакции и доходность в одном месте',
+    community: 'Сообщество',
+    communityDesc: 'Присоединяйтесь к растущему сообществу инвесторов и владельцев активов',
+
+    // Three token system
+    threeTokenSystem: 'Система трех токенов',
+    stableTokensTitle: 'Стабильные токены',
+    stableTokensDescription: 'Основная стоимость актива, обеспечивающая стабильность инвестиций',
+    supportTokensTitle: 'Токены поддержки',
+    supportTokensDescription: 'Поддержка экосистемы и управления активом',
+    brandTokensTitle: 'Брендовые токены',
+    brandTokensDescription: 'Эксклюзивные права и премиум-возможности',
+
+    // Popular assets
+    popularAssets: 'Популярные активы',
+    realEstateCard: 'Недвижимость в центре',
+    luxuryGoods: 'Предметы роскоши',
+    digitalArt: 'Цифровое искусство',
     
     // How to start
     howToStartTitle: 'Как начать работу',
@@ -166,6 +195,35 @@ const translations: Record<Language, Translations> = {
     securityDesc: 'Protected by blockchain technology and smart contracts',
     tripleTokenization: 'Triple Tokenization',
     tripleTokenizationDesc: 'AST, AGT and ABT tokens for maximum flexibility',
+
+    // Features section - Future Ecosystem
+    futureEcosystem: 'Future Ecosystem',
+    futureEcosystemDesc: 'Cosmo RWA provides a complete set of tools for working with tokenized assets',
+    assetTokenization: 'Asset Tokenization',
+    assetTokenizationDesc: 'Turn any real asset into digital tokens with automatic distribution',
+    marketplaceDesc: 'Trade tokenized assets in a decentralized environment',
+    liquidityPools: 'Liquidity Pools',
+    liquidityPoolsDesc: 'Create and manage liquidity to maximize returns',
+    lendingDesc: 'Get loans against token collateral or lend to other users',
+    personalCabinet: 'Personal Cabinet',
+    personalCabinetDesc: 'Track all your assets, transactions and returns in one place',
+    community: 'Community',
+    communityDesc: 'Join the growing community of investors and asset owners',
+
+    // Three token system
+    threeTokenSystem: 'Three Token System',
+    stableTokensTitle: 'Stable Tokens',
+    stableTokensDescription: 'Main asset value ensuring investment stability',
+    supportTokensTitle: 'Support Tokens',
+    supportTokensDescription: 'Ecosystem support and asset management',
+    brandTokensTitle: 'Brand Tokens',
+    brandTokensDescription: 'Exclusive rights and premium opportunities',
+
+    // Popular assets
+    popularAssets: 'Popular Assets',
+    realEstateCard: 'Downtown Real Estate',
+    luxuryGoods: 'Luxury Goods',
+    digitalArt: 'Digital Art',
     
     // How to start
     howToStartTitle: 'How to Get Started',
@@ -292,6 +350,35 @@ const translations: Record<Language, Translations> = {
     securityDesc: 'Protegido por tecnología blockchain y contratos inteligentes',
     tripleTokenization: 'Triple tokenización',
     tripleTokenizationDesc: 'Tokens AST, AGT y ABT para máxima flexibilidad',
+
+    // Features section - Future Ecosystem
+    futureEcosystem: 'Ecosistema del Futuro',
+    futureEcosystemDesc: 'Cosmo RWA proporciona un conjunto completo de herramientas para trabajar con activos tokenizados',
+    assetTokenization: 'Tokenización de Activos',
+    assetTokenizationDesc: 'Convierte cualquier activo real en tokens digitales con distribución automática',
+    marketplaceDesc: 'Comercia activos tokenizados en un entorno descentralizado',
+    liquidityPools: 'Pools de Liquidez',
+    liquidityPoolsDesc: 'Crea y gestiona liquidez para maximizar retornos',
+    lendingDesc: 'Obtén préstamos con garantía de tokens o presta a otros usuarios',
+    personalCabinet: 'Gabinete Personal',
+    personalCabinetDesc: 'Rastrea todos tus activos, transacciones y retornos en un lugar',
+    community: 'Comunidad',
+    communityDesc: 'Únete a la creciente comunidad de inversores y propietarios de activos',
+
+    // Three token system
+    threeTokenSystem: 'Sistema de Tres Tokens',
+    stableTokensTitle: 'Tokens Estables',
+    stableTokensDescription: 'Valor principal del activo asegurando estabilidad de inversión',
+    supportTokensTitle: 'Tokens de Soporte',
+    supportTokensDescription: 'Soporte del ecosistema y gestión de activos',
+    brandTokensTitle: 'Tokens de Marca',
+    brandTokensDescription: 'Derechos exclusivos y oportunidades premium',
+
+    // Popular assets
+    popularAssets: 'Activos Populares',
+    realEstateCard: 'Bienes Raíces del Centro',
+    luxuryGoods: 'Bienes de Lujo',
+    digitalArt: 'Arte Digital',
     
     // How to start
     howToStartTitle: 'Cómo empezar',
@@ -418,6 +505,35 @@ const translations: Record<Language, Translations> = {
     securityDesc: 'Protégé par la technologie blockchain et contrats intelligents',
     tripleTokenization: 'Triple tokenisation',
     tripleTokenizationDesc: 'Tokens AST, AGT et ABT pour une flexibilité maximale',
+
+    // Features section - Future Ecosystem
+    futureEcosystem: 'Écosystème du Futur',
+    futureEcosystemDesc: 'Cosmo RWA fournit un ensemble complet d\'outils pour travailler avec des actifs tokenisés',
+    assetTokenization: 'Tokenisation d\'Actifs',
+    assetTokenizationDesc: 'Transformez n\'importe quel actif réel en tokens numériques avec distribution automatique',
+    marketplaceDesc: 'Échangez des actifs tokenisés dans un environnement décentralisé',
+    liquidityPools: 'Pools de Liquidité',
+    liquidityPoolsDesc: 'Créez et gérez la liquidité pour maximiser les rendements',
+    lendingDesc: 'Obtenez des prêts avec garantie de tokens ou prêtez à d\'autres utilisateurs',
+    personalCabinet: 'Cabinet Personnel',
+    personalCabinetDesc: 'Suivez tous vos actifs, transactions et rendements en un seul endroit',
+    community: 'Communauté',
+    communityDesc: 'Rejoignez la communauté croissante d\'investisseurs et propriétaires d\'actifs',
+
+    // Three token system
+    threeTokenSystem: 'Système de Trois Tokens',
+    stableTokensTitle: 'Tokens Stables',
+    stableTokensDescription: 'Valeur principale de l\'actif assurant la stabilité d\'investissement',
+    supportTokensTitle: 'Tokens de Support',
+    supportTokensDescription: 'Support de l\'écosystème et gestion d\'actifs',
+    brandTokensTitle: 'Tokens de Marque',
+    brandTokensDescription: 'Droits exclusifs et opportunités premium',
+
+    // Popular assets
+    popularAssets: 'Actifs Populaires',
+    realEstateCard: 'Immobilier du Centre',
+    luxuryGoods: 'Biens de Luxe',
+    digitalArt: 'Art Numérique',
     
     // How to start
     howToStartTitle: 'Comment commencer',
@@ -544,16 +660,45 @@ const translations: Record<Language, Translations> = {
     securityDesc: 'Geschützt durch Blockchain-Technologie und Smart Contracts',
     tripleTokenization: 'Dreifache Tokenisierung',
     tripleTokenizationDesc: 'Tokens AST, AGT und ABT für maximale Flexibilität',
+
+    // Features section - Future Ecosystem
+    futureEcosystem: 'Zukunfts-Ökosystem',
+    futureEcosystemDesc: 'Cosmo RWA bietet ein komplettes Set an Werkzeugen für die Arbeit mit tokenisierten Assets',
+    assetTokenization: 'Asset-Tokenisierung',
+    assetTokenizationDesc: 'Verwandeln Sie jedes reale Asset in digitale Token mit automatischer Verteilung',
+    marketplaceDesc: 'Handeln Sie tokenisierte Assets in einer dezentralen Umgebung',
+    liquidityPools: 'Liquiditätspools',
+    liquidityPoolsDesc: 'Erstellen und verwalten Sie Liquidität zur Maximierung der Rendite',
+    lendingDesc: 'Erhalten Sie Kredite gegen Token-Sicherheiten oder verleihen Sie an andere Nutzer',
+    personalCabinet: 'Persönliches Dashboard',
+    personalCabinetDesc: 'Verfolgen Sie alle Ihre Assets, Transaktionen und Renditen an einem Ort',
+    community: 'Community',
+    communityDesc: 'Treten Sie der wachsenden Gemeinschaft von Investoren und Asset-Besitzern bei',
+
+    // Three token system
+    threeTokenSystem: 'Drei-Token-System',
+    stableTokensTitle: 'Stabile Token',
+    stableTokensDescription: 'Hauptwert des Assets, der die Investitionsstabilität gewährleistet',
+    supportTokensTitle: 'Support-Token',
+    supportTokensDescription: 'Unterstützung des Ökosystems und Asset-Management',
+    brandTokensTitle: 'Marken-Token',
+    brandTokensDescription: 'Exklusive Rechte und Premium-Möglichkeiten',
+
+    // Popular assets
+    popularAssets: 'Beliebte Assets',
+    realEstateCard: 'Immobilien im Zentrum',
+    luxuryGoods: 'Luxusgüter',
+    digitalArt: 'Digitale Kunst',
     
     // How to start
-    howToStartTitle: 'Wie anfangen',
+    howToStartTitle: 'Wie man anfängt',
     howToStartDescription: 'Einfache Schritte, um mit der Tokenisierung Ihrer Assets zu beginnen',
     step1Title: 'Wallet verbinden',
     step1Description: 'Verbinden Sie MetaMask oder eine andere kompatible Wallet',
     step2Title: 'Guthaben aufladen',
     step2Description: 'Fügen Sie COSMO-Token hinzu, um Gebühren zu bezahlen',
     step3Title: 'Asset erstellen',
-    step3Description: 'Laden Sie Informationen über Ihr Asset hoch',
+    step3Description: 'Laden Sie Informationen zu Ihrem Asset hoch',
     step4Title: 'Token handeln',
     step4Description: 'Handeln Sie Token auf dem Marktplatz',
     
@@ -670,14 +815,43 @@ const translations: Record<Language, Translations> = {
     securityDesc: '受区块链技术和智能合约保护',
     tripleTokenization: '三重代币化',
     tripleTokenizationDesc: 'AST、AGT和ABT代币提供最大灵活性',
+
+    // Features section - Future Ecosystem
+    futureEcosystem: '未来生态系统',
+    futureEcosystemDesc: 'Cosmo RWA提供一整套用于处理代币化资产的工具',
+    assetTokenization: '资产代币化',
+    assetTokenizationDesc: '将任何真实资产转化为自动分配的数字代币',
+    marketplaceDesc: '在去中心化环境中交易代币化资产',
+    liquidityPools: '流动性池',
+    liquidityPoolsDesc: '创建和管理流动性以最大化收益',
+    lendingDesc: '获得代币抵押贷款或向其他用户借贷',
+    personalCabinet: '个人账户',
+    personalCabinetDesc: '在一个地方跟踪所有资产、交易和收益',
+    community: '社区',
+    communityDesc: '加入不断壮大的投资者和资产所有者社区',
+
+    // Three token system
+    threeTokenSystem: '三代币系统',
+    stableTokensTitle: '稳定代币',
+    stableTokensDescription: '确保投资稳定性的主要资产价值',
+    supportTokensTitle: '支持代币',
+    supportTokensDescription: '生态系统支持和资产管理',
+    brandTokensTitle: '品牌代币',
+    brandTokensDescription: '独家权利和高级机会',
+
+    // Popular assets
+    popularAssets: '热门资产',
+    realEstateCard: '市中心房地产',
+    luxuryGoods: '奢侈品',
+    digitalArt: '数字艺术',
     
     // How to start
     howToStartTitle: '如何开始',
-    howToStartDescription: '开始代币化您的资产的简单步骤',
+    howToStartDescription: '开始代币化资产的简单步骤',
     step1Title: '连接钱包',
     step1Description: '连接MetaMask或其他兼容钱包',
     step2Title: '充值余额',
-    step2Description: '添加COSMO代币支付手续费',
+    step2Description: '添加COSMO代币支付费用',
     step3Title: '创建资产',
     step3Description: '上传您的资产信息',
     step4Title: '交易代币',
@@ -687,7 +861,7 @@ const translations: Record<Language, Translations> = {
     aboutTitle: '关于平台',
     aboutDescription: 'Cosmo RWA是一个革命性的真实资产代币化平台',
     missionTitle: '我们的使命',
-    missionDescription: '我们努力通过区块链技术让每个人都能投资真实资产',
+    missionDescription: '我们致力于通过区块链技术让每个人都能投资真实资产',
     featuresTitle: '我们的特色',
     feature1: '基于区块链的安全性',
     feature2: '全球可访问性',
@@ -796,14 +970,43 @@ const translations: Record<Language, Translations> = {
     securityDesc: 'ブロックチェーン技術とスマートコントラクトで保護',
     tripleTokenization: 'トリプルトークン化',
     tripleTokenizationDesc: '最大の柔軟性のためのAST、AGT、ABTトークン',
+
+    // Features section - Future Ecosystem
+    futureEcosystem: '未来のエコシステム',
+    futureEcosystemDesc: 'Cosmo RWAはトークン化資産を扱うための完全なツールセットを提供します',
+    assetTokenization: '資産のトークン化',
+    assetTokenizationDesc: 'あらゆる実物資産を自動分配付きのデジタルトークンに変換',
+    marketplaceDesc: '分散型環境でトークン化資産を取引',
+    liquidityPools: '流動性プール',
+    liquidityPoolsDesc: 'リターンを最大化するために流動性を作成・管理',
+    lendingDesc: 'トークン担保によるローンを取得、または他のユーザーに貸し出し',
+    personalCabinet: '個人用キャビネット',
+    personalCabinetDesc: 'すべての資産、取引、リターンを一箇所で追跡',
+    community: 'コミュニティ',
+    communityDesc: '成長する投資家と資産所有者のコミュニティに参加',
+
+    // Three token system
+    threeTokenSystem: '三つのトークンシステム',
+    stableTokensTitle: 'ステーブルトークン',
+    stableTokensDescription: '投資の安定性を保証する主要資産価値',
+    supportTokensTitle: 'サポートトークン',
+    supportTokensDescription: 'エコシステムのサポートと資産管理',
+    brandTokensTitle: 'ブランドトークン',
+    brandTokensDescription: '独占的な権利とプレミアム機能',
+
+    // Popular assets
+    popularAssets: '人気の資産',
+    realEstateCard: '中心街の不動産',
+    luxuryGoods: '高級品',
+    digitalArt: 'デジタルアート',
     
     // How to start
     howToStartTitle: '始め方',
-    howToStartDescription: '資産のトークン化を開始するための簡単なステップ',
+    howToStartDescription: '資産のトークン化を始める簡単なステップ',
     step1Title: 'ウォレット接続',
-    step1Description: 'MetaMaskまたは他の互換性のあるウォレットを接続',
+    step1Description: 'MetaMaskまたは他の互換ウォレットを接続',
     step2Title: '残高補充',
-    step2Description: '手数料を支払うためにCOSMOトークンを追加',
+    step2Description: '手数料支払いのためにCOSMOトークンを追加',
     step3Title: '資産作成',
     step3Description: '資産情報をアップロード',
     step4Title: 'トークン取引',
@@ -811,13 +1014,13 @@ const translations: Record<Language, Translations> = {
     
     // About
     aboutTitle: 'プラットフォームについて',
-    aboutDescription: 'Cosmo RWAは実物資産トークン化の革命的プラットフォームです',
+    aboutDescription: 'Cosmo RWAは実物資産のトークン化のための革命的なプラットフォームです',
     missionTitle: '私たちの使命',
-    missionDescription: 'ブロックチェーン技術を通じて実物資産投資を全ての人にアクセス可能にすることを目指しています',
-    featuresTitle: '私たちの機能',
+    missionDescription: 'ブロックチェーン技術を通じて実物資産投資を誰でも利用可能にすることを目指しています',
+    featuresTitle: '私たちの特徴',
     feature1: 'ブロックチェーンベースのセキュリティ',
     feature2: 'グローバルなアクセシビリティ',
-    feature3: '即座の取引',
+    feature3: '即時取引',
     feature4: '投資家コミュニティ',
     
     // Asset creation
@@ -922,6 +1125,35 @@ const translations: Record<Language, Translations> = {
     securityDesc: 'محمي بتقنية البلوك تشين والعقود الذكية',
     tripleTokenization: 'ترميز ثلاثي',
     tripleTokenizationDesc: 'رموز AST و AGT و ABT لأقصى مرونة',
+
+    // Features section - Future Ecosystem
+    futureEcosystem: 'النظام البيئي المستقبلي',
+    futureEcosystemDesc: 'Cosmo RWA توفر مجموعة كاملة من الأدوات للعمل مع الأصول المرمزة',
+    assetTokenization: 'ترميز الأصول',
+    assetTokenizationDesc: 'حوّل أي أصل حقيقي إلى رموز رقمية مع التوزيع التلقائي',
+    marketplaceDesc: 'تداول الأصول المرمزة في بيئة لامركزية',
+    liquidityPools: 'برك السيولة',
+    liquidityPoolsDesc: 'إنشاء وإدارة السيولة لتعظيم العوائد',
+    lendingDesc: 'احصل على قروض مقابل ضمان الرموز أو اقرض لمستخدمين آخرين',
+    personalCabinet: 'الخزانة الشخصية',
+    personalCabinetDesc: 'تتبع جميع أصولك ومعاملاتك وعوائدك في مكان واحد',
+    community: 'المجتمع',
+    communityDesc: 'انضم إلى مجتمع متنامي من المستثمرين ومالكي الأصول',
+
+    // Three token system
+    threeTokenSystem: 'نظام الرموز الثلاثة',
+    stableTokensTitle: 'الرموز المستقرة',
+    stableTokensDescription: 'القيمة الرئيسية للأصل التي تضمن استقرار الاستثمار',
+    supportTokensTitle: 'رموز الدعم',
+    supportTokensDescription: 'دعم النظام البيئي وإدارة الأصول',
+    brandTokensTitle: 'رموز العلامة التجارية',
+    brandTokensDescription: 'حقوق حصرية وفرص مميزة',
+
+    // Popular assets
+    popularAssets: 'الأصول الشائعة',
+    realEstateCard: 'العقارات في وسط المدينة',
+    luxuryGoods: 'سلع فاخرة',
+    digitalArt: 'الفن الرقمي',
     
     // How to start
     howToStartTitle: 'كيفية البدء',
@@ -1048,25 +1280,54 @@ const translations: Record<Language, Translations> = {
     securityDesc: 'Protegido por tecnologia blockchain e contratos inteligentes',
     tripleTokenization: 'Tokenização tripla',
     tripleTokenizationDesc: 'Tokens AST, AGT e ABT para máxima flexibilidade',
+
+    // Features section - Future Ecosystem
+    futureEcosystem: 'Ecossistema Futuro',
+    futureEcosystemDesc: 'Cosmo RWA fornece um conjunto completo de ferramentas para trabalhar com ativos tokenizados',
+    assetTokenization: 'Tokenização de Ativos',
+    assetTokenizationDesc: 'Transforme qualquer ativo real em tokens digitais com distribuição automática',
+    marketplaceDesc: 'Negocie ativos tokenizados em um ambiente descentralizado',
+    liquidityPools: 'Pools de Liquidez',
+    liquidityPoolsDesc: 'Crie e gerencie liquidez para maximizar retornos',
+    lendingDesc: 'Obtenha empréstimos contra garantia de tokens ou empreste para outros usuários',
+    personalCabinet: 'Gabinete Pessoal',
+    personalCabinetDesc: 'Acompanhe todos os seus ativos, transações e retornos em um só lugar',
+    community: 'Comunidade',
+    communityDesc: 'Junte-se à crescente comunidade de investidores e proprietários de ativos',
+
+    // Three token system
+    threeTokenSystem: 'Sistema de Três Tokens',
+    stableTokensTitle: 'Tokens Estáveis',
+    stableTokensDescription: 'Valor principal do ativo garantindo estabilidade do investimento',
+    supportTokensTitle: 'Tokens de Suporte',
+    supportTokensDescription: 'Suporte ao ecossistema e gestão de ativos',
+    brandTokensTitle: 'Tokens de Marca',
+    brandTokensDescription: 'Direitos exclusivos e oportunidades premium',
+
+    // Popular assets
+    popularAssets: 'Ativos Populares',
+    realEstateCard: 'Imóveis no Centro',
+    luxuryGoods: 'Bens de Luxo',
+    digitalArt: 'Arte Digital',
     
     // How to start
-    howToStartTitle: 'Como começar',
+    howToStartTitle: 'Como Começar',
     howToStartDescription: 'Passos simples para começar a tokenizar seus ativos',
-    step1Title: 'Conectar carteira',
+    step1Title: 'Conectar Carteira',
     step1Description: 'Conecte MetaMask ou outra carteira compatível',
-    step2Title: 'Financiar saldo',
+    step2Title: 'Financiar Saldo',
     step2Description: 'Adicione tokens COSMO para pagar taxas',
-    step3Title: 'Criar ativo',
+    step3Title: 'Criar Ativo',
     step3Description: 'Faça upload das informações do seu ativo',
-    step4Title: 'Negociar tokens',
+    step4Title: 'Negociar Tokens',
     step4Description: 'Negocie tokens no mercado',
     
     // About
-    aboutTitle: 'Sobre a plataforma',
+    aboutTitle: 'Sobre a Plataforma',
     aboutDescription: 'Cosmo RWA é uma plataforma revolucionária para tokenização de ativos reais',
-    missionTitle: 'Nossa missão',
+    missionTitle: 'Nossa Missão',
     missionDescription: 'Nos esforçamos para tornar os investimentos em ativos reais acessíveis a todos através da tecnologia blockchain',
-    featuresTitle: 'Nossas funcionalidades',
+    featuresTitle: 'Nossas Funcionalidades',
     feature1: 'Segurança baseada em blockchain',
     feature2: 'Acessibilidade global',
     feature3: 'Transações instantâneas',
@@ -1081,35 +1342,35 @@ const translations: Record<Language, Translations> = {
     art: 'Arte',
     collectibles: 'Colecionáveis',
     other: 'Outro',
-    assetName: 'Nome do ativo',
+    assetName: 'Nome do Ativo',
     assetNamePlaceholder: 'Apartamento no centro de Almaty',
-    assetDescription: 'Descrição do ativo',
+    assetDescription: 'Descrição do Ativo',
     assetDescriptionPlaceholder: 'Exemplo: Apartamento no centro de Almaty, 2 quartos, 65 m²',
-    assetType: 'Tipo de ativo',
-    selectAssetType: 'Selecione o tipo de ativo',
-    assetValue: 'Valor do ativo (USD)',
+    assetType: 'Tipo de Ativo',
+    selectAssetType: 'Selecione o Tipo de Ativo',
+    assetValue: 'Valor do Ativo (USD)',
     location: 'Localização',
-    locationPlaceholder: 'Digite a localização',
-    imageUrlOptional: 'URL da imagem (opcional)',
+    locationPlaceholder: 'Digite a Localização',
+    imageUrlOptional: 'URL da Imagem (opcional)',
     tokenCalculationPreview: 'Prévia do cálculo do preço do token',
     perToken: 'por token',
     tokenLimitInfo: 'O valor total é distribuído entre os tokens AST, AGT e ABT',
     creatingAsset: 'Criando ativo...',
-    createAsset: 'Criar ativo',
+    createAsset: 'Criar Ativo',
     success: 'Sucesso',
     assetCreatedSuccessfully: 'Ativo criado com sucesso com tokens',
     error: 'Erro',
     connectWalletFirst: 'Por favor, conecte sua carteira primeiro',
     assetCreationError: 'Erro ao criar ativo',
-    backToDashboard: 'Voltar ao painel',
+    backToDashboard: 'Voltar ao Painel',
     loading: 'Carregando...',
     balance: 'Saldo',
     cosmoBalance: 'Saldo COSMO',
     bnbBalance: 'Saldo BNB',
-    totalValue: 'Valor total',
+    totalValue: 'Valor Total',
     
     // Dashboard
-    quickActions: 'Ações rápidas',
+    quickActions: 'Ações Rápidas',
     tokenizeYourAsset: 'Tokenize seu ativo',
     tradeAssetTokens: 'Negocie tokens de ativos',
     loans: 'Empréstimos',
@@ -1174,6 +1435,35 @@ const translations: Record<Language, Translations> = {
     securityDesc: 'ब्लॉकचेन तकनीक और स्मार्ट कॉन्ट्रैक्ट्स द्वारा संरक्षित',
     tripleTokenization: 'ट्रिपल टोकनाइज़ेशन',
     tripleTokenizationDesc: 'अधिकतम लचीलेपन के लिए AST, AGT और ABT टोकन',
+
+    // Features section - Future Ecosystem
+    futureEcosystem: 'भविष्य की पारिस्थितिकी तंत्र',
+    futureEcosystemDesc: 'Cosmo RWA टोकनयुक्त संपत्तियों के साथ काम करने के लिए एक पूर्ण उपकरण सेट प्रदान करता है',
+    assetTokenization: 'संपत्ति टोकनाइज़ेशन',
+    assetTokenizationDesc: 'किसी भी वास्तविक संपत्ति को स्वचालित वितरण के साथ डिजिटल टोकन में बदलें',
+    marketplaceDesc: 'विकेंद्रीकृत वातावरण में टोकनयुक्त संपत्तियों का व्यापार करें',
+    liquidityPools: 'तरलता पूल',
+    liquidityPoolsDesc: 'रिटर्न को अधिकतम करने के लिए तरलता बनाएं और प्रबंधित करें',
+    lendingDesc: 'टोकन गारंटी के खिलाफ ऋण प्राप्त करें या अन्य उपयोगकर्ताओं को उधार दें',
+    personalCabinet: 'व्यक्तिगत कैबिनेट',
+    personalCabinetDesc: 'एक ही स्थान पर अपनी सभी संपत्तियों, लेनदेन और रिटर्न को ट्रैक करें',
+    community: 'समुदाय',
+    communityDesc: 'निवेशकों और संपत्ति मालिकों के बढ़ते समुदाय में शामिल हों',
+
+    // Three token system
+    threeTokenSystem: 'तीन टोकन प्रणाली',
+    stableTokensTitle: 'स्थिर टोकन',
+    stableTokensDescription: 'निवेश स्थिरता सुनिश्चित करने वाली मुख्य संपत्ति मूल्य',
+    supportTokensTitle: 'समर्थन टोकन',
+    supportTokensDescription: 'पारिस्थितिकी तंत्र समर्थन और संपत्ति प्रबंधन',
+    brandTokensTitle: 'ब्रांड टोकन',
+    brandTokensDescription: 'विशेषाधिकार और प्रीमियम अवसर',
+
+    // Popular assets
+    popularAssets: 'लोकप्रिय संपत्तियां',
+    realEstateCard: 'डाउntownन रियल एस्टेट',
+    luxuryGoods: 'लक्ज़री सामान',
+    digitalArt: 'डिजिटल कला',
     
     // How to start
     howToStartTitle: 'कैसे शुरू करें',
