@@ -1,14 +1,17 @@
 
 import { Button } from "@/components/ui/button";
 import { MapPin, TrendingUp, Coins } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const AssetCards = () => {
+  const { t } = useLanguage();
+
   const assets = [
     {
       id: 1,
-      name: "Luxury Apartment NYC",
-      type: "Недвижимость",
-      location: "Нью-Йорк, США",
+      name: t('luxuryApartmentNYC'),
+      type: t('realEstate'),
+      location: t('newYorkUSA'),
       value: "1,250,000",
       image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=300&fit=crop",
       tokens: {
@@ -20,9 +23,9 @@ const AssetCards = () => {
     },
     {
       id: 2,
-      name: "Commercial Office Space",
-      type: "Коммерческая недвижимость",
-      location: "Лондон, Великобритания",
+      name: t('commercialOfficeSpace'),
+      type: t('commercialRealEstate'),
+      location: t('londonUK'),
       value: "2,800,000",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop",
       tokens: {
@@ -34,9 +37,9 @@ const AssetCards = () => {
     },
     {
       id: 3,
-      name: "Vintage Wine Collection",
-      type: "Товары",
-      location: "Бордо, Франция",
+      name: t('vintageWineCollection'),
+      type: t('goods'),
+      location: t('bordeauxFrance'),
       value: "450,000",
       image: "https://images.unsplash.com/photo-1566137480273-80f0b2e66d8d?w=400&h=300&fit=crop",
       tokens: {
@@ -53,10 +56,10 @@ const AssetCards = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6 gradient-text">
-            Популярные активы
+            {t('popularAssets')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Изучите разнообразные токенизированные активы в нашем маркетплейсе
+            {t('popularAssetsDesc')}
           </p>
         </div>
 
@@ -96,7 +99,7 @@ const AssetCards = () => {
                   <div className="text-2xl font-bold text-green-400 mb-1">
                     ${parseInt(asset.value).toLocaleString()} USDT
                   </div>
-                  <div className="text-sm text-muted-foreground">Общая стоимость актива</div>
+                  <div className="text-sm text-muted-foreground">{t('totalAssetValue')}</div>
                 </div>
 
                 {/* Распределение токенов */}
@@ -125,11 +128,11 @@ const AssetCards = () => {
                 <div className="grid grid-cols-2 gap-3">
                   <Button className="futuristic-btn">
                     <Coins className="w-4 h-4 mr-2" />
-                    Купить
+                    {t('buy')}
                   </Button>
                   <Button variant="outline" className="futuristic-btn">
                     <TrendingUp className="w-4 h-4 mr-2" />
-                    Ликвидность
+                    {t('liquidity')}
                   </Button>
                 </div>
               </div>
@@ -140,7 +143,7 @@ const AssetCards = () => {
         {/* Кнопка перехода к полному маркетплейсу */}
         <div className="text-center mt-12">
           <Button size="lg" className="futuristic-btn">
-            Открыть полный маркетплейс
+            {t('openFullMarketplace')}
           </Button>
         </div>
       </div>
