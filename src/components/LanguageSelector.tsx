@@ -21,13 +21,13 @@ const languages = [
 ];
 
 const LanguageSelector = () => {
-  const { language, setLanguage } = useLanguage();
+  const { currentLanguage, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
-  const currentLanguage = languages.find(lang => lang.code === language) || languages[0];
+  const currentLanguageData = languages.find(lang => lang.code === currentLanguage) || languages[0];
 
   const handleLanguageChange = (langCode: Language) => {
-    setLanguage(langCode);
+    setLanguage(langCode as any);
     setIsOpen(false);
   };
 
@@ -36,8 +36,8 @@ const LanguageSelector = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
           <Globe className="h-4 w-4 mr-2" />
-          <span className="mr-1">{currentLanguage.flag}</span>
-          <span className="hidden sm:inline">{currentLanguage.name}</span>
+          <span className="mr-1">{currentLanguageData.flag}</span>
+          <span className="hidden sm:inline">{currentLanguageData.name}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="max-h-60 overflow-y-auto">
@@ -45,7 +45,7 @@ const LanguageSelector = () => {
           <DropdownMenuItem
             key={lang.code}
             onClick={() => handleLanguageChange(lang.code as Language)}
-            className={language === lang.code ? 'bg-accent' : ''}
+            className={currentLanguage === lang.code ? 'bg-accent' : ''}
           >
             <span className="mr-2">{lang.flag}</span>
             {lang.name}

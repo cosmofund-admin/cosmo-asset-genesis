@@ -1,4 +1,4 @@
-
+import React, { createContext, useContext, ReactNode } from 'react';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -9,7 +9,7 @@ interface LanguageState {
   setLanguage: (language: Language) => void;
 }
 
-const translations = {
+const translations: Record<Language, Record<string, string>> = {
   en: {
     // Navigation
     home: 'Home',
@@ -965,7 +965,7 @@ const translations = {
     
     // Ecosystem
     futureEcosystem: '未来のエコシステム',
-    futureEcosystemDesc: '実物資産トークン化のための完全なインフラ',
+    futureEcosystemDesc: '実物資産トークン化を実現するための完全なインフラ',
     assetTokenization: '資産トークン化',
     assetTokenizationDesc: '実物資産をブロックチェーントークンに変換',
     marketplaceDesc: '分散型取引所でトークン化された資産を取引',
@@ -1343,12 +1343,21 @@ export const useLanguageStore = create<LanguageState>()(
   )
 );
 
-export const useLanguage = () => {
+// Language Context
+const LanguageContext = createContext<{
+  language: Language;
+  currentLanguage: Language;
+  setLanguage: (language: Language) => void;
+  t: (key: string) => string;
+} | null>(null);
+
+// Language Provider Component
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const { currentLanguage, setLanguage } = useLanguageStore();
 
   const t = (key: string): string => {
     console.log(`Translating key: ${key} for language: ${currentLanguage}`);
-    const translation = translations[currentLanguage]?.[key as keyof typeof translations[typeof currentLanguage]];
+    const translation = translations[currentLanguage]?.[key];
     
     if (!translation) {
       console.warn(`Translation key "${key}" not found`);
@@ -1358,9 +1367,23 @@ export const useLanguage = () => {
     return translation;
   };
 
-  return {
-    currentLanguage,
-    setLanguage,
-    t,
-  };
+  return (
+    <LanguageContext.Provider value={{
+      language: currentLanguage, // For backward compatibility
+      currentLanguage,
+      setLanguage,
+      t,
+    }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+// Hook to use language context
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
 };
