@@ -25,6 +25,33 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
+const AppRoutes = () => (
+  <Routes>
+    <Route path="/" element={<Index />} />
+    <Route path="/dashboard" element={
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    } />
+    <Route path="/create-asset" element={
+      <ProtectedRoute>
+        <CreateAsset />
+      </ProtectedRoute>
+    } />
+    <Route path="/marketplace" element={
+      <ProtectedRoute>
+        <Marketplace />
+      </ProtectedRoute>
+    } />
+    <Route path="/loans" element={
+      <ProtectedRoute>
+        <Loans />
+      </ProtectedRoute>
+    } />
+    <Route path="*" element={<NotFound />} />
+  </Routes>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -33,30 +60,7 @@ const App = () => (
       <BrowserRouter>
         <LanguageProvider>
           <MetaMaskProvider>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/dashboard" element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              } />
-              <Route path="/create-asset" element={
-                <ProtectedRoute>
-                  <CreateAsset />
-                </ProtectedRoute>
-              } />
-              <Route path="/marketplace" element={
-                <ProtectedRoute>
-                  <Marketplace />
-                </ProtectedRoute>
-              } />
-              <Route path="/loans" element={
-                <ProtectedRoute>
-                  <Loans />
-                </ProtectedRoute>
-              } />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <AppRoutes />
           </MetaMaskProvider>
         </LanguageProvider>
       </BrowserRouter>
