@@ -54,17 +54,17 @@ const AppRoutes = () => (
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter basename={import.meta.env.PROD ? '/ВАШ-РЕПОЗИТОРИЙ-NAME' : ''}>
-        <LanguageProvider>
-          <MetaMaskProvider>
+    <LanguageProvider>
+      <MetaMaskProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter basename={import.meta.env.PROD ? '/cosmo-asset-genesis' : ''}>
             <AppRoutes />
-          </MetaMaskProvider>
-        </LanguageProvider>
-      </BrowserRouter>
-    </TooltipProvider>
+          </BrowserRouter>
+        </TooltipProvider>
+      </MetaMaskProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 
