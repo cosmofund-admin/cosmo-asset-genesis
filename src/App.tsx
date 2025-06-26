@@ -57,7 +57,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.PROD ? '/ВАШ-РЕПОЗИТОРИЙ-NAME' : ''}>
         <LanguageProvider>
           <MetaMaskProvider>
             <AppRoutes />
